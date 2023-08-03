@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
 import test from "../../img/test.png";
+import { Link } from 'react-router-dom';
 
 const CenteredContainer = styled(Container)`
   display: flex;
@@ -39,13 +40,19 @@ export const Main = () => {
         <Container className="p-5">
           <HorizontalRow className="p-5">
             <div>
+            <Link to="/Category/Fruit">
               <SmallComponent src={test} alt="react"/>
+            </Link>
             </div>
             <div>
+            <Link to="/Category/Vegetable">
               <SmallComponent src={test} alt="react"/>
+            </Link>
             </div>
             <div>
+            <Link to="/Category/Cereal">
               <SmallComponent src={test} alt="react"/>
+            </Link>
             </div>
           </HorizontalRow>
         </Container>
