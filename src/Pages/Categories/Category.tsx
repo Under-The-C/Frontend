@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Container, Row } from "react-bootstrap";
 import test from "../../img/test.png";
 import { Link } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 
 const SmallComponent = styled.img`
   width: 100%; 
@@ -43,12 +43,40 @@ const HorizontalRow = styled(Row)`
   gap: 10vw;
   margin-bottom: 2vh;
 `;
-
+interface Select{
+    id:number,
+    title:string,
+    name:string,
+    content:string,
+}
 export const Category = () => {
+    const { itemName } = useParams();
+    console.log(itemName);
+    const Item : Select[]= [{
+        id:0,
+        title:"Fruit",
+        name:"과일",
+        content:"",  
+        },
+        {
+        id:1,
+        title:"Vegetable",
+        name:"채소",
+        content:"",  
+        },
+        {
+        id:2,
+        title:"Cereal",
+        name:"곡물",
+        content:"",  
+        },
+    ];
+    const selectItem = Item.find((element) => element.title === itemName);
+
   return (
   <>
     <TextWrapper>
-        <h1>과일</h1>
+        <h1>{selectItem?.name}</h1>
     </TextWrapper>
     
     <CenteredContainer>
@@ -61,36 +89,36 @@ export const Category = () => {
         </ButtonsWrapper>
           <HorizontalRow className="p-5">
             <div>
-            <Link to="/category">
+           
               <SmallComponent src={test} alt="react"/>
-            </Link>
+         
             </div>
             <div>
-            <Link to="/category">
+         
               <SmallComponent src={test} alt="react"/>
-            </Link>
+          
             </div>
             <div>
-            <Link to="/category">
+           
               <SmallComponent src={test} alt="react"/>
-            </Link>
+           
             </div>
           </HorizontalRow>
           <HorizontalRow className="p-5">
             <div>
-            <Link to="/category">
+           
               <SmallComponent src={test} alt="react"/>
-            </Link>
+            
             </div>
             <div>
-            <Link to="/category">
+        
               <SmallComponent src={test} alt="react"/>
-            </Link>
+        
             </div>
             <div>
-            <Link to="/category">
+         
               <SmallComponent src={test} alt="react"/>
-            </Link>
+       
             </div>
           </HorizontalRow>
         </Container>

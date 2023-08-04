@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
 import test from "../../img/test.png";
 import { Link } from 'react-router-dom';
+import { useQuery, useQueryClient } from 'react-query';
 
 const CenteredContainer = styled(Container)`
   display: flex;
@@ -31,7 +32,17 @@ const SmallComponent = styled.img`
   margin-bottom: 5vh;
 `;
 export const Main = () => {
-   
+  /*
+	const { isLoading, isError, data } = useQuery([],  {
+			 
+			//기본 캐시 타임 == 5min
+		});
+		if (isLoading)
+		return <h2>Loading...</h2>
+		
+		if (isError)
+			return <h2>Error...</h2>
+*/
   return (
     <>
     <TopComponent src={test} alt="react" />
