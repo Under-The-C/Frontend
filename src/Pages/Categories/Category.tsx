@@ -4,7 +4,9 @@ import { Container, Row } from "react-bootstrap";
 import test from "../../img/test.png";
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-
+import fruit from "../../img/peach.jpg";
+import vegetable from "../../img/vagetable.jpg";
+import cereal from "../../img/Cereal.jpg";
 const SmallComponent = styled.img`
   width: 100%; 
   height: auto;
@@ -90,36 +92,36 @@ export const Category = () => {
           <HorizontalRow className="p-5">
             <div>
            
-              <SmallComponent src={test} alt="react"/>
+              <SmallComponent src={fruit} alt="react"/>
          
             </div>
             <div>
          
-              <SmallComponent src={test} alt="react"/>
+              <SmallComponent src={vegetable} alt="react"/>
           
             </div>
             <div>
            
-              <SmallComponent src={test} alt="react"/>
+              <SmallComponent src={cereal} alt="react"/>
            
             </div>
           </HorizontalRow>
           <HorizontalRow className="p-5">
-            <div>
+          <div>
            
-              <SmallComponent src={test} alt="react"/>
-            
-            </div>
-            <div>
-        
-              <SmallComponent src={test} alt="react"/>
-        
-            </div>
-            <div>
-         
-              <SmallComponent src={test} alt="react"/>
+           <SmallComponent src={fruit} alt="react"/>
+      
+         </div>
+         <div>
+      
+           <SmallComponent src={vegetable} alt="react"/>
        
-            </div>
+         </div>
+         <div>
+        
+           <SmallComponent src={cereal} alt="react"/>
+        
+         </div>
           </HorizontalRow>
         </Container>
       </div>
