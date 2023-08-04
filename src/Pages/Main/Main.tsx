@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
-import test from "../../img/test.png";
+import fruit from "../../img/peach.jpg";
+import vegetable from "../../img/vagetable.jpg";
+import cereal from "../../img/Cereal.jpg";
 import { Link } from 'react-router-dom';
 import { useQuery, useQueryClient } from 'react-query';
 
@@ -45,24 +47,24 @@ export const Main = () => {
 */
   return (
     <>
-    <TopComponent src={test} alt="react" />
+    <TopComponent src={fruit} alt="react" />
     <CenteredContainer>
       <div>
         <Container className="p-5">
           <HorizontalRow className="p-5">
             <div>
             <Link to="/Category/Fruit">
-              <SmallComponent src={test} alt="react"/>
+              <SmallComponent src={fruit} alt="react"/>
             </Link>
             </div>
             <div>
             <Link to="/Category/Vegetable">
-              <SmallComponent src={test} alt="react"/>
+              <SmallComponent src={vegetable} alt="react"/>
             </Link>
             </div>
             <div>
             <Link to="/Category/Cereal">
-              <SmallComponent src={test} alt="react"/>
+              <SmallComponent src={cereal} alt="react"/>
             </Link>
             </div>
           </HorizontalRow>
