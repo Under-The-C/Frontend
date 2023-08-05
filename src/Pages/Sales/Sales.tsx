@@ -2,6 +2,7 @@ import React from "react";
 import { ImageUpload } from "./ImageUpload";
 import { Button, Container } from "react-bootstrap";
 import { DescriptionInput } from "./DescriptionInput";
+import { DatePick } from "./DatePick";
 
 export const Sales = () => {
   const handleSubmit = (e: any) => {
@@ -24,7 +25,9 @@ export const Sales = () => {
           <div className="col-span-3 w-full h-full bg-white">
             <DescriptionInput />
           </div>
-          <div className="col-span-3 w-full h-full bg-white">3</div>
+          <div className="col-span-3 w-full h-full bg-white">
+            <DatePick />
+          </div>
           <div className="col-span-3 w-full h-full bg-white">4</div>
           <div className="col-span-3 w-full h-full bg-white">
             <ImageUpload />

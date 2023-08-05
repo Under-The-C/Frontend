@@ -4,26 +4,18 @@ import { salesState } from "../../Atom/sales";
 
 export const DescriptionInput = () => {
   const [sales, setSales] = useRecoilState(salesState);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-
-  const handleOnChangeTitle = (e: any) => {
-    setTitle(e.target.value);
-    //setSales({ ...sales, productName: e.target.value });
-  };
 
   const inputChangeHandler = (e: any) => {
     const { name, value } = e.target;
     switch (name) {
       case "title":
-        setTitle(e.target.value);
+        setSales({ ...sales, productName: value });
         break;
       case "description":
-        setDescription(e.target.value);
+        setSales({ ...sales, description: value });
         break;
       case "price":
-        setPrice(e.target.value);
+        setSales({ ...sales, price: value });
         break;
       default:
         break;
@@ -39,7 +31,7 @@ export const DescriptionInput = () => {
             name="title"
             className="w-[40vw] h-[5vh] ml-5 p-2 bg-slate-100 outline-none border-none rounded-lg font-bold text-lg"
             type="text"
-            value={title}
+            value={sales.productName}
             onChange={inputChangeHandler}
           />
         </label>
@@ -50,9 +42,10 @@ export const DescriptionInput = () => {
           <textarea
             name="description"
             placeholder="최대 500자까지 입력 가능합니다."
+            value={sales.description}
             onChange={inputChangeHandler}
             maxLength={100}
-            className="w-[44vw] h-32 text-[1rem] font-semibold border-none outline-none rounded-lg bg-slate-100 p-3 mt-4"
+            className="w-[44vw] h-32 text-[1rem] border-none outline-none rounded-lg bg-slate-100 p-3 mt-2"
             style={{ wordWrap: "break-word", resize: "none" }}
           />
         </label>
@@ -62,9 +55,9 @@ export const DescriptionInput = () => {
           <span className="font-bold text-xl">가격</span>
           <input
             name="price"
-            className="w-[41vw] h-[5vh] ml-5 p-2 bg-slate-100 outline-none border-none rounded-lg font-bold text-lg"
-            type="text"
-            value={title}
+            className="w-[41vw] h-[5vh] ml-5 p-2 bg-slate-100 outline-none border-none rounded-lg text-lg"
+            type="number"
+            value={sales.price}
             onChange={inputChangeHandler}
           />
         </label>

@@ -1,50 +1,34 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useRecoilState } from "recoil";
-import { formDataState, mainImageState, salesState } from "../../Atom/sales";
+import { salesState } from "../../Atom/sales";
 
 export const ImageUpload = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [sales, setSales] = useRecoilState(salesState);
-  const [mainImage, setMainImage] = useRecoilState(mainImageState);
-  const [formData, setFormData] = useRecoilState(formDataState);
 
-  useEffect(() => {
-    if (mainImage !== "") {
-      setSales({ ...sales, mainImage: mainImage });
-    }
-  }, [mainImage]);
-
-  const handleImageChange = (e: any) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    const reader: FileReader | null = new FileReader();
+    if (!file) return;
 
     try {
       // 이미지 미리보기
       reader.onload = () => {
         if (reader.result) {
-          setMainImage(reader.result.toString());
+          setSales((prevSales) => ({
+            ...prevSales,
+            mainImage: reader.result as string,
+          }));
         }
       };
 
-      if (file) {
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          const newFormData = new FormData();
-
-          newFormData.append("image", file);
-          setFormData(newFormData);
-        };
-      } else {
-        setMainImage("");
-      }
+      reader.readAsDataURL(file);
     } catch (error) {
       console.error("Error image load:", error);
     }
   };
 
   const handleChangeImageClick = () => {
-    // fileInputRef의 클릭 이벤트를 발생시킴
-    // 트리거 발생하면 handleImageChange 실행됨
     if (fileInputRef.current) fileInputRef.current.click();
   };
 
@@ -57,11 +41,11 @@ export const ImageUpload = () => {
         onChange={handleImageChange}
         style={{ display: "none" }}
       />
-      {mainImage ? (
+      {sales.mainImage ? (
         <img
-          src={mainImage}
+          src={sales.mainImage}
           className="w-full h-full image-contain"
-          alt="Choosepicture"
+          alt="mainImage"
           onClick={handleChangeImageClick}
         />
       ) : (

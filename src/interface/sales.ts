@@ -6,4 +6,6 @@ export interface SalesDto {
   detailImage: string[];
   description: string;
   salePeriod: string;
+  saleStartDate: string;
+  saleEndDate: string;
 }

@@ -8,15 +8,12 @@ export const salesState = atom<SalesDto>({
     productName: "",
     price: 0,
     keyword: [],
+    saleStartDate: "",
+    saleEndDate: "",
     detailImage: [],
     description: "",
     salePeriod: "",
   },
-});
-
-export const mainImageState = atom<string>({
-  key: "mainImageState",
-  default: "",
 });
 
 export const formDataState = atom<FormData | null>({
