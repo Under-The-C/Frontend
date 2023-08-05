@@ -46,17 +46,17 @@ export const Main = () => {
         <Container className="p-5">
           <Row className="p-5">
             <Col>
-              <Link to="/Category/Fruit">
+              <Link to="/Category/과일">
                 <SmallComponent src={fruit} alt="react" />
               </Link>
             </Col>
             <Col>
-              <Link to="/Category/Vegetable">
+              <Link to="/Category/채소">
                 <SmallComponent src={vegetable} alt="react" />
               </Link>
             </Col>
             <Col>
-              <Link to="/Category/Cereal">
+              <Link to="/Category/견과">
                 <SmallComponent src={cereal} alt="react" />
               </Link>
             </Col>

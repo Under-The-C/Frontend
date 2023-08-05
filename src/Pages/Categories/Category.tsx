@@ -76,11 +76,11 @@ export const Category = () => {
     {
       id: 2,
       title: "Cereal",
-      name: "곡물",
+      name: "견과",
       content: "",
     },
   ];
-  const selectItem = Item.find((element) => element.title === itemName);
+  const selectItem = Item.find((element) => element.name === itemName);
 
   return (
     <>
@@ -104,34 +104,34 @@ export const Category = () => {
             </ButtonsWrapper>
             <HorizontalRow className="p-5">
               <Col>
-                <Link to="/Category/Fruit">
+                <Link to="/buy">
                   <SmallComponent src={fruit} alt="react" />
                 </Link>
               </Col>
               <Col>
-                <Link to="/Category/Vegetable">
+                <Link to="/buy">
                   <SmallComponent src={vegetable} alt="react" />
                 </Link>
               </Col>
               <Col>
-                <Link to="/Category/Cereal">
+                <Link to="/buy">
                   <SmallComponent src={cereal} alt="react" />
                 </Link>
               </Col>
             </HorizontalRow>
             <HorizontalRow className="p-5">
               <Col>
-                <Link to="/Category/Fruit">
+                <Link to="/buy">
                   <SmallComponent src={fruit} alt="react" />
                 </Link>
               </Col>
               <Col>
-                <Link to="/Category/Vegetable">
+                <Link to="/buy">
                   <SmallComponent src={vegetable} alt="react" />
                 </Link>
               </Col>
               <Col>
-                <Link to="/Category/Cereal">
+                <Link to="/buy">
                   <SmallComponent src={cereal} alt="react" />
                 </Link>
               </Col>
