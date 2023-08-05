@@ -22,7 +22,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/Category/:itemName" element={<Category />} />
-            <Route path="/Customer" element={<Customer />} />
+            <Route path="/buy" element={<Customer />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
