@@ -67,7 +67,7 @@ const Header = () => {
               </NavDropdown.Item>
             </NavDropdown>
             {loggedIn && user.role !== "customer" ? (
-              <Nav.Link as={Link} to="/Sales">
+              <Nav.Link as={Link} to="/sales">
                 판매하기
               </Nav.Link>
             ) : null}
