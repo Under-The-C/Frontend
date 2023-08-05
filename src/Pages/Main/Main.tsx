@@ -4,15 +4,15 @@ import { Container, Row, Col } from "react-bootstrap";
 import fruit from "../../img/peach.jpg";
 import vegetable from "../../img/vagetable.jpg";
 import cereal from "../../img/Cereal.jpg";
-import { Link } from 'react-router-dom';
-import { useQuery, useQueryClient } from 'react-query';
+import { Link } from "react-router-dom";
+import { useQuery, useQueryClient } from "react-query";
+
 
 const CenteredContainer = styled(Container)`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  
+  height: 5vh;
 `;
 const HorizontalRow = styled(Row)`
   display: flex;
@@ -27,7 +27,7 @@ const TopComponent = styled.img`
   margin-top: 2vh;
 `;
 const SmallComponent = styled.img`
-  width: 100%; 
+  width: 100%;
   height: auto;
   max-height: calc(30vh);
   object-fit: contain;
@@ -47,33 +47,30 @@ export const Main = () => {
 */
   return (
     <>
-    <TopComponent src={fruit} alt="react" />
-    <CenteredContainer>
-      <div>
-        <Container className="p-5">
-          <HorizontalRow className="p-5">
-            <div>
-            <Link to="/Category/Fruit">
+      <TopComponent src={test} alt="react" />
+      <CenteredContainer>
+        <div>
+          <Container className="p-5">
+            <HorizontalRow className="p-5">
+              <div>
+              <Link to="/Category/Fruit">
               <SmallComponent src={fruit} alt="react"/>
             </Link>
-            </div>
-            <div>
-            <Link to="/Category/Vegetable">
+              </div>
+              <div>
+              <Link to="/Category/Vegetable">
               <SmallComponent src={vegetable} alt="react"/>
             </Link>
-            </div>
-            <div>
-            <Link to="/Category/Cereal">
+              </div>
+              <div>
+              <Link to="/Category/Cereal">
               <SmallComponent src={cereal} alt="react"/>
             </Link>
-            </div>
-          </HorizontalRow>
-        </Container>
-      </div>
-    </CenteredContainer>
+              </div>
+            </HorizontalRow>
+          </Container>
+        </div>
+      </CenteredContainer>
     </>
   );
 };
-
-
-
