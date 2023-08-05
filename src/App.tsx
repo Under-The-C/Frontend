@@ -11,6 +11,7 @@ import { Main } from "./Pages/Main/Main";
 import { Customer } from "./Pages/Customer/Customer";
 import { Category } from "./Pages/Categories/Category";
 import Header from "./Layouts/Header";
+import Footer from "./Layouts/Footer";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
+      <Footer />
     </>
   );
 };
