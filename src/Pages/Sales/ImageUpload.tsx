@@ -33,29 +33,32 @@ export const ImageUpload = () => {
   };
 
   return (
-    <div className="flex h-[20vh] aspect-square bg-gray-200 justify-center items-center">
-      <input
-        type="file"
-        accept="image/*"
-        ref={fileInputRef}
-        onChange={handleImageChange}
-        style={{ display: "none" }}
-      />
-      {sales.mainImage ? (
-        <img
-          src={sales.mainImage}
-          className="w-full h-full image-contain"
-          alt="mainImage"
-          onClick={handleChangeImageClick}
+    <>
+      <span className="font-bold text-xl">대표 이미지</span>
+      <div className="flex h-[20vh] aspect-square bg-gray-200 justify-center items-center">
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          onChange={handleImageChange}
+          style={{ display: "none" }}
         />
-      ) : (
-        <img
-          src={require("../../public/images/camera.png")}
-          className="w-16 h-16"
-          alt="camera"
-          onClick={handleChangeImageClick}
-        />
-      )}
-    </div>
+        {sales.mainImage ? (
+          <img
+            src={sales.mainImage}
+            className="w-full h-full image-contain"
+            alt="mainImage"
+            onClick={handleChangeImageClick}
+          />
+        ) : (
+          <img
+            src={require("../../public/images/camera.png")}
+            className="w-16 h-16"
+            alt="camera"
+            onClick={handleChangeImageClick}
+          />
+        )}
+      </div>
+    </>
   );
 };
