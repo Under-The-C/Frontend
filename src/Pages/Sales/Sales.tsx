@@ -13,7 +13,7 @@ export const Sales = () => {
   return (
     <Container>
       <form
-        className="fflex h-full w-full flex-col py-20"
+        className="flex h-full w-full flex-col py-20"
         onSubmit={handleSubmit}
       >
         <div className="flex w-full h-full mb-10">
@@ -35,7 +35,7 @@ export const Sales = () => {
           <div className="col-span-3 w-full h-full bg-white">4</div>
           <div className="col-span-3 w-full h-full bg-white">6</div>
         </div>
-        <Button className="bg-mainGreen">
+        <Button className="bg-mainGreen w-36">
           <span>등록하기</span>
         </Button>
       </form>
