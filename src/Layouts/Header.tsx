@@ -25,7 +25,8 @@ const Header = () => {
     setSearch(e.target.value);
   };
 
-  const handleOnClickSearch = () => {
+  const handleOnClickSearch = (e: any) => {
+    e.preventDefault();
     navigate("/Search/" + search);
     setSearch("");
   };
@@ -50,6 +51,9 @@ const Header = () => {
               aria-label="Search"
               value={search}
               onChange={handleOnChangeSearch}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleOnClickSearch(e);
+              }}
             />
             <img
               src={require("../public/images/search.png")}
