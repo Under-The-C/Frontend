@@ -131,7 +131,7 @@ export const Category = () => {
                 </Link>
               </Col>
               <Col>
-                <Link to="/buy">
+                <Link to="/Category/buy">
                   <SmallComponent src={cereal} alt="react" />
                 </Link>
               </Col>
