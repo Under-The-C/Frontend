@@ -4,6 +4,8 @@ import { sellerState } from "../../Atom/user";
 import { SellerMarketDto } from "../../interface/user";
 import { salesItemSummaryDto } from "../../interface/sales";
 import { Container } from "react-bootstrap";
+import { SellerInfo } from "./SellerInfo";
+import { SalesItemSummay } from "./SalesItemSummay";
 
 const dummySeller: SellerMarketDto = {
   sellerId: 1,
@@ -71,11 +73,21 @@ export const SellerMyPage = () => {
       market: dummySeller,
       salesItemsSummaryList: dummySummaryItems,
     });
+    //나중에 api여기서 호출
   }, []);
 
   return (
     <Container>
-      <div className="flex flex-col items-center w-full h-full bg-slate-300" />
+      <div className="grid grid-row-2 grid-cols-1 items-center w-full h-full py-20">
+        <div>
+          <SellerInfo />
+        </div>
+        <div className="mt-5 grid grid-cols-3 gap-4">
+          {seller.salesItemsSummaryList.map((item: salesItemSummaryDto) => (
+            <SalesItemSummay key={item.id} props={item} />
+          ))}
+        </div>
+      </div>
     </Container>
   );
 };
