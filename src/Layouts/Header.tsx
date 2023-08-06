@@ -25,7 +25,8 @@ const Header = () => {
     setSearch(e.target.value);
   };
 
-  const handleOnClickSearch = () => {
+  const handleOnClickSearch = (e: any) => {
+    e.preventDefault();
     navigate("/Search/" + search);
     setSearch("");
   };
@@ -50,6 +51,9 @@ const Header = () => {
               aria-label="Search"
               value={search}
               onChange={handleOnChangeSearch}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleOnClickSearch(e);
+              }}
             />
             <img
               src={require("../public/images/search.png")}
@@ -60,14 +64,18 @@ const Header = () => {
           </Form>
           <Nav className="ms-auto">
             <NavDropdown title="카테고리" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/Category/과일">과일</NavDropdown.Item>
-              <NavDropdown.Item href="/Category/채소">채소</NavDropdown.Item>
-              <NavDropdown.Item href="/Category/견과">
+              <NavDropdown.Item as={Link} to="/Category/과일">
+                과일
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/Category/채소">
+                채소
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/Category/견과">
                 쌀, 잡곡, 견과
               </NavDropdown.Item>
             </NavDropdown>
             {loggedIn && user.role !== "customer" ? (
-              <Nav.Link as={Link} to="/Sales">
+              <Nav.Link as={Link} to="/sales">
                 판매하기
               </Nav.Link>
             ) : null}
