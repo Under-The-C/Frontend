@@ -5,7 +5,8 @@ export interface SalesDto {
   keyword: string[];
   detailImage: string[];
   description: string;
-  salePeriod: string;
+  subDescription: string;
+  subTitle: string;
   saleStartDate: string;
   saleEndDate: string;
 }

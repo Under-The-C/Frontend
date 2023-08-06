@@ -26,10 +26,10 @@ export const ImagesPick = () => {
         if (selectedImages.length === files.length) {
           setSales((prevSales) => ({
             ...prevSales,
-            mainImages: selectedImages,
+            detailImage: selectedImages,
           }));
 
-          setPreviewImages(selectedImages); // Update the previewImages state with selected images
+          setPreviewImages(selectedImages);
         } else {
           readImage(files[selectedImages.length]);
         }

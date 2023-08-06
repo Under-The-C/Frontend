@@ -12,7 +12,8 @@ export const salesState = atom<SalesDto>({
     saleEndDate: "",
     detailImage: [],
     description: "",
-    salePeriod: "",
+    subDescription: "",
+    subTitle: "",
   },
 });
 

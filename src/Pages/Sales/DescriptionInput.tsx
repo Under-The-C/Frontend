@@ -23,7 +23,7 @@ export const DescriptionInput = () => {
   };
 
   return (
-    <div className="flex w-full h-[30vh] py-10 flex-col">
+    <div className="flex w-full h-full py-10 flex-col">
       <div className="flex flex-grow w-full">
         <label className="flex flex-row w-full h-full items-center">
           <span className="font-bold text-xl">상품명</span>
@@ -36,7 +36,7 @@ export const DescriptionInput = () => {
           />
         </label>
       </div>
-      <div className="flex flex-grow w-full h-32 mt-3">
+      <div className="flex flex-grow w-full h-32 mt-5">
         <label className="flex flex-col w-full h-full">
           <span className="font-bold text-xl w-full">상품 소개</span>
           <textarea
@@ -50,7 +50,7 @@ export const DescriptionInput = () => {
           />
         </label>
       </div>
-      <div className="flex flex-grow w-full mt-3">
+      <div className="flex flex-grow w-full mt-5">
         <label className="flex flex-row w-full h-full items-center">
           <span className="font-bold text-xl">가격</span>
           <input
