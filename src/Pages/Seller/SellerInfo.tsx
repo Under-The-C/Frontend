@@ -17,7 +17,9 @@ export const SellerInfo = () => {
           />
         </div>
         <div className="w-ful flex-col flex ml-5 justify-center">
-          <span className="text-3xl font-bold">{market?.sellerName}</span>
+          <span className="text-3xl font-bold">
+            {market?.sellerName} 판매자
+          </span>
           <div className="flex flex-row mt-3">
             <img
               className="w-5 h-5"
