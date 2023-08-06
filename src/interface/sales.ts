@@ -10,3 +10,13 @@ export interface SalesDto {
   saleStartDate: string;
   saleEndDate: string;
 }
+
+export interface salesItemSummaryDto {
+  id: number;
+  mainImage: string;
+  productName: string;
+  price: number;
+  rating: number;
+  reviewCount: number;
+  salesDate: string;
+}

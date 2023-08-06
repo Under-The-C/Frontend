@@ -4,3 +4,12 @@ export interface UserDto {
   email: string;
   role: string;
 }
+
+export interface SellerMarketDto {
+  sellerId: number;
+  sellerName: string;
+  sellerProfileImage: string;
+  sellerRating: number;
+  sellerReviewCount: number;
+  marketInfo: string;
+}
