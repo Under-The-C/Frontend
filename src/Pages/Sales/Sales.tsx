@@ -56,7 +56,7 @@ export const Sales = () => {
       alert("판매 종료 날짜를 입력해주세요.");
       return;
     }
-    //submit api
+    //submit api call
   };
 
   return (
