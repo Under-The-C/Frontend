@@ -7,7 +7,7 @@ const CustomDropdownToggle = styled(Dropdown.Toggle)`
   border-color: #28a745;
   width: 100%;
   margin-bottom:1vw;
-  margin-left: 1vh;
+ 
 `;
 
 const CustomFormControl = styled(FormControl)`
@@ -25,18 +25,18 @@ return (
                 구매옵션
              </CustomDropdownToggle>
                 <Dropdown.Menu>
-                        <Dropdown.Header>도서산간지역 선택</Dropdown.Header>
-                        <Dropdown.Item onClick={() => setArea("기본")}>기본배송지역</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setArea("도서산간지역")}>도서산간지역</Dropdown.Item>
-                        <Dropdown.Divider/>
-                        <Dropdown.Header>수량 선택</Dropdown.Header>
+                    <Dropdown.Header>수량 선택</Dropdown.Header>
                         <CustomFormControl
                         type="number"
                         placeholder="수량을 입력하세요"
-                        min="1"
+                        min="0"
                         value={quantity}
-                        onChange={(e) => setQuantity(Number(e.target.value))}
+                        onChange={(e:any) => setQuantity(Number(e.target.value()))}
                         />
+                        <Dropdown.Header>배송지역 선택</Dropdown.Header>
+                        <Dropdown.Item onClick={() => setArea("기본")}>기본배송지역</Dropdown.Item>
+                        <Dropdown.Item onClick={() => setArea("도서산간지역")}>도서산간지역(배송료+5000원)</Dropdown.Item>
+                        <Dropdown.Divider/>
                 </Dropdown.Menu>
             </Dropdown>
 
