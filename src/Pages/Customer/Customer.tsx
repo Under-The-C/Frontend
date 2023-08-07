@@ -10,24 +10,41 @@ import { DropBar } from './DropBar';
 
 const MainContainer = styled(Container)`
   margin-top: 5vw;
+  margin-bottom:10vw;
 `;
 
 const ProductInfo = styled.div`
   margin-bottom: 1vw;
   text-align: center;
+  justify-content: flex-end; 
+  display: flex;
 `;
 
 const StyledCol = styled(Col)`
   justify-content: flex-end; 
   margin-top:1vw;
-  
 `;
 
+const TextBox = styled.div`
+  justify-content: center; 
+  display: flex;
+  font-size: 2rem;
+  max-height: calc(30vh);
+`;
+
+const TestArea = styled(Container)`
+  margin-top:5vw;
+`
+
+const TextCol = styled(Col)`
+  margin-top:5vw;
+`;
 
 const StyledRow = styled(Row)`
   justify-content: Center; 
   width:20vw;
-  
+  justify-content: flex-end; 
+  display: flex;
 `;
 
 const Button = styled(BootstrapButton)`
@@ -36,6 +53,16 @@ const Button = styled(BootstrapButton)`
   display: inline-block;
 `;
 
+const ImageBox = styled.img`
+  margin-top: 5vw;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+`;
 
 
 export const Customer = () => {
@@ -48,7 +75,7 @@ export const Customer = () => {
     navigate("/paymentPage");
   };
 
-  const productBox = (buyItem: SalesDto) => {
+  const productBox = () => {
     navigate("/productBox");
   };
 
@@ -75,6 +102,7 @@ export const Customer = () => {
               <StyledRow>
                 <DropBar/>
               </StyledRow>
+            </StyledCol>
               <StyledRow>
                 <Button type="submit" className="bg-mainGreen w-36">
                   <span>구매하기</span>
@@ -83,10 +111,24 @@ export const Customer = () => {
                   <span>장바구니</span>
                 </Button>
               </StyledRow>
-            </StyledCol>
           </Row>
         </form>
-      </MainContainer>
+        </MainContainer>
+        
+        <TestArea>
+        <TextBox>
+        판매기간: {buy.saleStartDate}~{buy.saleEndDate}
+        </TextBox>
+        <ImageBox src={buy.detailImage[0]}/>
+
+        <TextBox>
+            <TextCol>{buy.subTitle}</TextCol>
+        </TextBox>
+            <TextCol>{buy.subDescription}</TextCol>
+
+        <ImageBox src={buy.detailImage[2]}/>
+        <ImageBox src={buy.detailImage[0]}/>
+        </TestArea>
     </>
   );
 };
