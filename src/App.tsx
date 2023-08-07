@@ -13,6 +13,7 @@ import { Category } from "./Pages/Categories/Category";
 import { Sales } from "./Pages/Sales/Sales";
 import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
+import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/Customer" element={<Customer />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/buy" element={<Customer />} />
+            <Route path="/seller-my-page" element={<SellerMyPage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
