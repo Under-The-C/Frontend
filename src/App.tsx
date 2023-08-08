@@ -14,6 +14,7 @@ import { Sales } from "./Pages/Sales/Sales";
 import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
 import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
+import Review from "./Pages/Review/Review";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/sales" element={<Sales />} />
             <Route path="/buy" element={<Customer />} />
             <Route path="/seller-my-page" element={<SellerMyPage />} />
+            <Route path="/review-write" element={<Review/>} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
