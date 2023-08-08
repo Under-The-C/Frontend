@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { DropBar } from './DropBar';
 import { buyState1 } from './product';
 import { BuyItem } from '../../interface/buy';
-
+import { SellerLink } from './sellerLink';
 const MainImage = styled(Col)`
   margin-left:15vw;
   margin-right: auto;
@@ -134,7 +134,7 @@ export const Customer = () => {
           </Row>
         </form>
         </MainContainer>
-        
+        <SellerLink/>
         <TestArea>
         <TextBox>
         판매기간: {buy.saleStartDate}~{buy.saleEndDate}
