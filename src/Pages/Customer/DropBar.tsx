@@ -34,7 +34,7 @@ return (
                         placeholder="수량을 입력하세요"
                         min="0"
                         value={quantity}
-                        onChange={(e) => setQuantity(Number(e.target.value))}
+                        onChange={(e:any) => setQuantity(Number(e.target.value))}
                         />
                         <Dropdown.Header>배송지역 선택</Dropdown.Header>
                         <Dropdown.Item onClick={() => setArea("기본")}>기본배송지역</Dropdown.Item>
