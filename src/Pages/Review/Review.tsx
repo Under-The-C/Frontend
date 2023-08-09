@@ -1,22 +1,31 @@
 // 리뷰 페이지 작성
 import { useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col, Container, Button } from 'react-bootstrap'
 import peach from '../../img/peach.jpg'
 import Star from '../../public/images/Star.png'
 
 const Review = () => {
 
-  const [star, setStar] = useState(0)
-  const [content, setContent] = useState<string>('')
-  const [img, setImg] = useState(0)
+  const [review, setReview] = useState({
+    star: '',
+    content: ''
+  });
 
   const inputChangeHandler = (e: any) => {
     const {name, value} =e.target;
     switch (name) {
       case "starNum":
+        setReview({ ...review, star: value})
         break;
-      
+      case "reviewDoc":
+        setReview({...review, content: value})
+        break;
+      default:
+        break;
     }
+  }
+  const reviewSubmit = (e:any) => {
+    console.log(review);
   }
 
   return (
@@ -81,6 +90,19 @@ const Review = () => {
       <Row className="justify-content-md-left">
       
       </Row>
+      
+      <div style={{marginTop:'50px', marginBottom:'50px'}}/>
+
+      <Row className="justify-content-md-end">
+        <Button 
+          type="button"
+          style={{backgroundColor:'#5EB241',width:'200px'}}
+          onClick={reviewSubmit}
+          >
+        <span className="font-white text-xl">리뷰 등록하기</span>
+      </Button>
+      </Row>
+
       </form>
     </Container>
   )
