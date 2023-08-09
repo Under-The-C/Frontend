@@ -14,7 +14,7 @@ import { Sales } from "./Pages/Sales/Sales";
 import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
 import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
-
+import { Payment } from "./Pages/Payment/Payment";
 const App = () => {
   return (
     <>
@@ -26,6 +26,7 @@ const App = () => {
             <Route path="/Category/:itemName" element={<Category />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/buy" element={<Customer />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="/seller-my-page" element={<SellerMyPage />} />
           </Routes>
         </BrowserRouter>
