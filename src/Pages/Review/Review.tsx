@@ -1,80 +1,85 @@
 // 리뷰 페이지 작성
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axios from "axios"
 import { Row, Col, Container } from 'react-bootstrap'
 import peach from '../../img/peach.jpg'
-import styled from "styled-components";
-
-const CenteredContainer = styled(Container)`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-`;
+import Star from '../../public/images/Star.png'
 
 const Review = () => {
-  // hook
-  const navigate = useNavigate()
 
-  // state
   const [star, setStar] = useState(0)
   const [content, setContent] = useState<string>('')
   const [img, setImg] = useState(0)
 
-  // const formSubmit = (e: any) => {
-  //   e.preventDefault()
-
-  //   if(title.length === 0) {
-  //     alert('제목을 입력해 주세요.')
-  //   } else if(content.length === 0) {
-  //     alert('내용을 입력해 주세요.')
-  //   } else {
-  //     if(window.confirm('리뷰를 등록하시겠습니까?')) {
-  //       axios.post('http://localhost:3000/review', {
-  //         title: title,
-  //         content: content
-  //       })
-  //         .then(function(response) {
-  //           alert('리뷰가 등록되었습니다.')
-  //           navigate('/')
-  //         })
-
-  //         .catch(function(error) {
-  //           console.log(error)
-  //         })
-  //       }
-  //   }
-  // }
-
+  const inputChangeHandler = (e: any) => {
+    const {name, value} =e.target;
+    switch (name) {
+      case "starNum":
+        break;
+      
+    }
+  }
 
   return (
     <Container>
       <form>
       <Row>
-        <div style={{marginTop:"50px", marginBottom:"50px"}}>
+        <div style={{marginTop:'50px', marginBottom:'90px'}}>
           <span className="font-black text-3xl">리뷰남기기</span>
         </div>
       </Row>
-      <Row>
-        <Col style={{width:"500px"}}>
-          <img src={peach} alt='peach' height="500" width="500"/>
+
+      <Row className="justify-content-md-left">
+        <Col xs lg="2" style={{width:'35%'}}>
+          <img src={peach} alt='peach' height='400px' width='400px'/>
         </Col>
-        <Col>
+        <Col xs lg="2">
           <span className="font-black text-xl">유기농 백도 1.8kg</span>
           <br/>
-          <span>45,000원</span>
+          <span className="text-xl">45,000원</span>
         </Col>
       </Row>
-      <Row>
-        <span className="font-black text-xl">별점</span>
+
+      <div style={{marginTop:'50px', marginBottom:'50px'}}/>
+
+      <Row className="justify-content-md-left">
+        <Col xs lg="2" style={{width:'9%'}}>
+          <span className="font-black text-xl">별점</span>
+        </Col>
+        <Col xs lg="2" style={{width:'4%'}}>
+          <img src={Star} alt='star' height="25" width="25"/>
+        </Col>
+        <Col xs lg="2">
+          <input 
+            name="starNum"
+            type="number" 
+            style={{width:'70px'}}
+            placeholder="0"
+            onChange={inputChangeHandler}
+          />
+        </Col>
       </Row>
-      <Row>
+
+      <div style={{marginTop:'50px', marginBottom:'50px'}}/>
+
+      <Row className="justify-content-md-left">
         <span className="font-black text-xl">내용</span>
-        <input></input>
+        <div style={{marginTop:'10px', marginBottom:'10px'}}/>
+        <textarea
+          name="reviewDoc"
+          style={{backgroundColor:'#D9D9D9',width:'1000px', height:'200px'}}
+          placeholder="사용하신 내용을 입력해주세요"
+          onChange={inputChangeHandler}
+        />
       </Row>
-      <Row>
+
+      <div style={{marginTop:'50px', marginBottom:'50px'}}/>
+
+      <Row className="justify-content-md-left">
         <span className="font-black text-xl">사진 등록</span> 
+      </Row>
+
+      <Row className="justify-content-md-left">
+      
       </Row>
       </form>
     </Container>
