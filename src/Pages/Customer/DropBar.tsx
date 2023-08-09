@@ -20,6 +20,9 @@ export const DropBar = () => {
 
 const [quantity, setQuantity] = useState(1);
 const [area, setArea] = useState("도서산간지역을 선택하세요");
+const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setQuantity(Number(e.target.value))            
+};
 
 return (
         <>
@@ -34,7 +37,8 @@ return (
                         placeholder="수량을 입력하세요"
                         min="0"
                         value={quantity}
-                        onChange={(e) => setQuantity(Number(e.target.value))}
+                        onChange={changeValue}
+                        
                         />
                         <Dropdown.Header>배송지역 선택</Dropdown.Header>
                         <Dropdown.Item onClick={() => setArea("기본")}>기본배송지역</Dropdown.Item>
@@ -42,8 +46,9 @@ return (
                         <Dropdown.Divider/>
                 </Dropdown.Menu>
             </CustomDropdown>
-
+        
         </>
+        
     )
 
 }

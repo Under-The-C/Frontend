@@ -16,6 +16,7 @@ import Footer from "./Layouts/Footer";
 import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
 import { ChooseRole } from "./Pages/SignUp/ChooseRole";
 import { SignUp } from "./Pages/SignUp/SignUp";
+import { Payment } from "./Pages/Payment/Payment";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/Category/:itemName" element={<Category />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/buy" element={<Customer />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="/seller-my-page" element={<SellerMyPage />} />
             <Route path="/signup-choose-role" element={<ChooseRole />} />
             <Route path="/signup/:role" element={<SignUp />} />
