@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import { Button as BootstrapButton, Dropdown, FormControl} from "react-bootstrap";
 
+
+const CustomDropdown = styled(Dropdown)`
+  width: 70%;
+`;
+
 const CustomDropdownToggle = styled(Dropdown.Toggle)`
-  background-color: #28a745;
-  border-color: #28a745;
   width: 100%;
   margin-bottom:1vw;
  
@@ -17,11 +20,14 @@ export const DropBar = () => {
 
 const [quantity, setQuantity] = useState(1);
 const [area, setArea] = useState("도서산간지역을 선택하세요");
+const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setQuantity(Number(e.target.value))            
+};
 
 return (
         <>
-            <Dropdown>
-             <CustomDropdownToggle id="dropdown-basic">
+            <CustomDropdown>
+             <CustomDropdownToggle id="dropdown-basic" className="bg-mainGreen">
                 구매옵션
              </CustomDropdownToggle>
                 <Dropdown.Menu>
@@ -31,16 +37,18 @@ return (
                         placeholder="수량을 입력하세요"
                         min="0"
                         value={quantity}
-                        onChange={(e:any) => setQuantity(Number(e.target.value()))}
+                        onChange={changeValue}
+                        
                         />
                         <Dropdown.Header>배송지역 선택</Dropdown.Header>
                         <Dropdown.Item onClick={() => setArea("기본")}>기본배송지역</Dropdown.Item>
                         <Dropdown.Item onClick={() => setArea("도서산간지역")}>도서산간지역(배송료+5000원)</Dropdown.Item>
                         <Dropdown.Divider/>
                 </Dropdown.Menu>
-            </Dropdown>
-
+            </CustomDropdown>
+        
         </>
+        
     )
 
 }

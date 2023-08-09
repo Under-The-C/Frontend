@@ -16,6 +16,7 @@ import Footer from "./Layouts/Footer";
 import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
 import Review from "./Pages/Review/Review";
 
+import { Payment } from "./Pages/Payment/Payment";
 const App = () => {
   return (
     <>
@@ -25,9 +26,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/Category/:itemName" element={<Category />} />
-            <Route path="/Customer" element={<Customer />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/buy" element={<Customer />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="/seller-my-page" element={<SellerMyPage />} />
             <Route path="/review-write" element={<Review/>} />
           </Routes>

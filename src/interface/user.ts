@@ -13,3 +13,11 @@ export interface SellerMarketDto {
   sellerReviewCount: number;
   marketInfo: string;
 }
+
+export interface Buyer {
+  buyerId: number;
+  buyerName: string;
+  buyerEmail: string;
+  buyerAddress: string;
+  buyerPhone: string;
+}
