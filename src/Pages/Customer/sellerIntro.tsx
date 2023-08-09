@@ -17,7 +17,9 @@ const Button = styled(BootstrapButton)`
   height: auto;
   justify-content: center;
 `;
-
+const Test = styled.span`
+  font-size:0.7rem;
+`;
 const TextArea = styled.div`
     display:flex;
     width:60vw;
@@ -60,7 +62,7 @@ export const SellerIntro = () => {
          </div>
          <TextArea>{market?.sellerName} 판매자의 다른 상품이 궁금하다면?..
             <Button onClick={()=>addView()} className="bg-mainGreen">
-                더보기
+                <Test>더보기</Test>
             </Button>
         </TextArea>
      
