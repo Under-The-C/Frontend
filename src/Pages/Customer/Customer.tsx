@@ -9,8 +9,9 @@ import { DropBar } from './DropBar';
 import { buyState1 } from './product';
 import { BuyItem } from '../../interface/buy';
 import { SellerLink } from './sellerLink';
+
 const MainImage = styled(Col)`
-  margin-left:15vw;
+  margin-left:10vw;
   margin-right: auto;
   height: auto;
   max-width: 100%;
@@ -87,7 +88,7 @@ export const Customer = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    navigate("/paymentPage");
+    navigate("/payment");
   };
 
   const productBox = () => {
