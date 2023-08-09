@@ -9,7 +9,7 @@ export const buyState = atom<BuyItem>({
     mainImage: "0",
     productName: "0",
     price: 10000,
-    keyword: [''],
+    keyword: [""],
     saleStartDate: "",
     saleEndDate: "",
     detailImage: [],
@@ -26,7 +26,7 @@ export const formDataState = atom<FormData | null>({
 
 export const buyerState = atom<Buyer>({
   key: "buyerState",
-  default:{
+  default: {
     buyerId: 0,
     buyerName: "",
     buyerEmail: "",
@@ -36,7 +36,7 @@ export const buyerState = atom<Buyer>({
 });
 
 export const buyeruserState = selector({
-  key: "sellerState",
+  key: "buyeruserState",
   get: ({ get }) => {
     const user = get(userState);
     const buyerValue = get(buyerState);
@@ -47,9 +47,7 @@ export const buyeruserState = selector({
     };
   },
   set: ({ set }, newValue: any) => {
-    
     if (newValue.user) set(userState, newValue.user);
     if (newValue.buyerValue) set(buyerState, newValue.buyerValue);
-    
-   },
+  },
 });
