@@ -7,9 +7,11 @@ import { BuyerForm } from "./BuyerForm";
 const TextTitle = styled.div`
 font-size:3rem;    
 display:flex;
-justify-content: center;
+justify-content: left;
 align-items: flex-start;
 width: 100%;
+margin-top:3vw;
+margin-left:15vw;
 `;
 
 const Box = styled.div`
