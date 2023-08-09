@@ -1,8 +1,9 @@
 export interface SignupStateDto {
   name: string;
-  email: string;
+  nickname: string;
   phone: string;
   address: string;
+  detailAddress: string;
   role: string;
-  Image?: string;
+  image?: string;
 }

@@ -18,27 +18,6 @@ export const userState = atom<UserDto>({
   },
 });
 
-//export const sellerState = atom({
-//  key: "sellerState",
-//  default: {
-//    user: {
-//      id: 0,
-//      name: "",
-//      email: "",
-//      role: "",
-//    } as UserDto,
-//    market: {
-//      sellerId: 0,
-//      sellerName: "",
-//      sellerProfileImage: "",
-//      sellerRating: 0,
-//      sellerReviewCount: 0,
-//      marketInfo: "",
-//    } as SellerMarketDto,
-//    salseItemsSummaryList: [] as salesItemSummaryDto[],
-//  },
-//});
-
 export const sellerState = selector({
   key: "sellerState",
   get: ({ get }) => {
