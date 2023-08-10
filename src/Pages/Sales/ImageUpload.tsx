@@ -17,7 +17,7 @@ export const ImageUpload = () => {
         if (reader.result) {
           setSales((prevSales) => ({
             ...prevSales,
-            mainImage: reader.result as string,
+            main_image: reader.result as string,
           }));
         }
       };
@@ -43,11 +43,11 @@ export const ImageUpload = () => {
           onChange={handleImageChange}
           style={{ display: "none" }}
         />
-        {sales.mainImage ? (
+        {sales.main_image ? (
           <img
-            src={sales.mainImage}
+            src={sales.main_image}
             className="w-full h-full image-contain"
-            alt="mainImage"
+            alt="main_image"
             onClick={handleChangeImageClick}
           />
         ) : (
