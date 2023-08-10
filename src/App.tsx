@@ -20,6 +20,7 @@ import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
 
 import Review from "./Pages/Review/Review";
+import { MypageEdit } from "./Pages/MyPage/MypageEdit";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/signup-choose-role" element={<ChooseRole />} />
             <Route path="/signup/:role" element={<SignUp />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/mypage-edit" element={<MypageEdit />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>

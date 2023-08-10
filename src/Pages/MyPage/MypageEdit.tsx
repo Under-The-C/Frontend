@@ -1,30 +1,72 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { userState } from "../../Atom/user";
 import { useNavigate } from "react-router-dom";
+import DaumPostcode from "react-daum-postcode";
 
-const dummyUser = {
-  id: 1,
-  name: "김민수",
-  email: "abc@gmail.com",
-  profile: "https://picsum.photos/200",
-  address: "서울시 강남구",
-  detailAddress: "역삼동",
-  phone: "010-1234-5678",
-  role: "customer",
-};
-
-export const MyPage = () => {
+export const MypageEdit = () => {
   const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setUser(dummyUser);
-  }, []);
+  const [openPostcode, setOpenPostcode] = useState<boolean>(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleonClickEditProfile = () => {
-    navigate("/mypage-edit");
+    if (user.address === "") {
+      alert("주소를 입력해주세요");
+      return;
+    }
+    if (user.detailAddress === "") {
+      alert("상세 주소를 입력해주세요");
+      return;
+    }
+    if (user.email === "") {
+      alert("닉네임을 입력해주세요");
+      return;
+    }
+    //수정 api요청 먼저 하기
+    //mypage effect때문에 수정해도 반영 안될듯
+    navigate(-1);
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    const reader: FileReader | null = new FileReader();
+    if (!file) return;
+
+    try {
+      reader.onload = () => {
+        if (reader.result) {
+          setUser({
+            ...user,
+            profile: reader.result as string,
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error("Error image load:", error);
+    }
+  };
+
+  const handleChangeImageClick = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+
+  const handleSearchAddr = {
+    clickButton: () => {
+      setOpenPostcode(!openPostcode);
+    },
+
+    selectAddress: (data: any) => {
+      setUser({ ...user, address: data.address });
+      setOpenPostcode(false);
+    },
+  };
+
+  const handleInput = (e: any) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
   };
 
   return (
@@ -34,12 +76,26 @@ export const MyPage = () => {
           <span className="font-black text-[3.5rem]">마이페이지</span>
         </div>
         <div className="flex justify-between flex-col w-[70vw] mt-2 p-10 bg-[#9EEBA5] rounded-3xl">
-          <div className="flex w-full h-[15vh] justify-center items-center">
+          <div className="flex w-full h-[18vh] justify-center items-center flex-col">
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={handleImageChange}
+              style={{ display: "none" }}
+            />
             <img
               src={user.profile}
               alt="profile"
               className="h-[13vh] aspect-square rounded-full"
             />
+            <Button
+              variant="primary"
+              className="h-10 rounded-md outline-none border-none bg-mint text-black w-32 mt-3"
+              onClick={handleChangeImageClick}
+            >
+              사진 수정하기
+            </Button>
           </div>
           <div className="flex flex-row w-full h-[15%] justify-center items-center my-10">
             <label className="flex text-xl font-semibold w-32">성함</label>
@@ -64,9 +120,29 @@ export const MyPage = () => {
             <input
               name="nickname"
               value={user.email}
+              onChange={handleInput}
               type="text"
               className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
             />
+          </div>
+          <div
+            className="flex flex-col w-full justify-center items-end"
+            onClick={handleSearchAddr.clickButton}
+          >
+            <Button
+              variant="primary"
+              className=" h-10 rounded-md outline-none border-none  bg-mint text-black  w-32 mr-20"
+            >
+              주소 검색
+            </Button>
+            {openPostcode && (
+              <DaumPostcode
+                onComplete={handleSearchAddr.selectAddress}
+                autoClose={false}
+                defaultQuery="판교역로 235"
+                className="flex w-[80%]"
+              />
+            )}
           </div>
           <div className="flex flex-row w-full justify-center items-center my-10">
             <label className="flex text-xl font-semibold w-32 px-3">주소</label>
@@ -81,6 +157,7 @@ export const MyPage = () => {
             <input
               name="detailAddress"
               type="text"
+              onChange={handleInput}
               className="ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
               value={user.detailAddress}
             />
@@ -91,7 +168,7 @@ export const MyPage = () => {
               className="h-10 rounded-md outline-none border-none bg-mint text-black w-32"
               onClick={handleonClickEditProfile}
             >
-              수정하기
+              수정완료
             </Button>
           </div>
         </div>
