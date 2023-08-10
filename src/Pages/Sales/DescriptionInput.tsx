@@ -9,13 +9,16 @@ export const DescriptionInput = () => {
     const { name, value } = e.target;
     switch (name) {
       case "title":
-        setSales({ ...sales, productName: value });
+        setSales({ ...sales, name: value });
         break;
       case "description":
         setSales({ ...sales, description: value });
         break;
       case "price":
         setSales({ ...sales, price: value });
+        break;
+      case "category":
+        setSales({ ...sales, category: value });
         break;
       default:
         break;
@@ -24,14 +27,28 @@ export const DescriptionInput = () => {
 
   return (
     <div className="flex w-full h-full py-10 flex-col">
-      <div className="flex flex-grow w-full">
+      <div className="flex flex-grow w-full items-center">
+        <span className="font-bold text-xl">카테고리</span>
+        <select
+          name="category"
+          className="flex w-[10vw] h-[5vh] ml-5 p-2 bg-slate-100 outline-none border-none rounded-lg font-bold text-lg"
+          value={sales.category}
+          defaultValue={"과일"}
+          onChange={inputChangeHandler}
+        >
+          <option value="과일">과일</option>
+          <option value="채소">채소</option>
+          <option value="잡곡">쌀, 잡곡, 견과</option>
+        </select>
+      </div>
+      <div className="flex flex-grow w-full mt-5">
         <label className="flex flex-row w-full h-full items-center">
           <span className="font-bold text-xl">상품명</span>
           <input
             name="title"
             className="w-[40vw] h-[5vh] ml-5 p-2 bg-slate-100 outline-none border-none rounded-lg font-bold text-lg"
             type="text"
-            value={sales.productName}
+            value={sales.name}
             onChange={inputChangeHandler}
           />
         </label>

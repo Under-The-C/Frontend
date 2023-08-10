@@ -1,6 +1,7 @@
 export interface SalesDto {
-  mainImage: string;
-  productName: string;
+  seller_id: number;
+  main_image: string;
+  name: string;
   price: number;
   keyword: string[];
   detailImage: string[];
@@ -9,6 +10,8 @@ export interface SalesDto {
   subTitle: string;
   saleStartDate: string;
   saleEndDate: string;
+  createdAt: string;
+  category: string;
 }
 
 export interface salesItemSummaryDto {
