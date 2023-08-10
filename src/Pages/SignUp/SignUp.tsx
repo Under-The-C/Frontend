@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
 import { useRecoilState } from "recoil";
 import { signupState } from "../../Atom/signup";
-import { sign } from "crypto";
 
 export const SignUp = () => {
   const param = useParams();
@@ -111,7 +110,7 @@ export const SignUp = () => {
                 name="nickname"
                 type="text"
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-                onAbort={handleInput}
+                onChange={handleInput}
               />
             </div>
             <div

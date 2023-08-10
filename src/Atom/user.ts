@@ -15,6 +15,11 @@ export const userState = atom<UserDto>({
     name: "",
     email: "",
     role: "", // "admin" | "customer" | "seller" ? 모름
+    profile: "",
+    address: "",
+    detailAddress: "",
+    phone: "",
+    marketInfo: "",
   },
 });
 
