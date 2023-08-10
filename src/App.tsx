@@ -14,7 +14,7 @@ import { Sales } from "./Pages/Sales/Sales";
 import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
 import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
-
+import { LoginPage } from "./Auth/LoginPage";
 import Review from "./Pages/Review/Review";
 
 
@@ -36,9 +36,8 @@ const App = () => {
             <Route path="/buy" element={<Customer />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/seller-my-page" element={<SellerMyPage />} />
-
             <Route path="/review-write" element={<Review/>} />
-
+            <Route path="/loginPage" element={<LoginPage/>} />
             <Route path="/signup-choose-role" element={<ChooseRole />} />
             <Route path="/signup/:role" element={<SignUp />} />
 
