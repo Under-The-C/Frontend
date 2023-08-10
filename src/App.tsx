@@ -17,6 +17,7 @@ import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
 import { ChooseRole } from "./Pages/SignUp/ChooseRole";
 import { SignUp } from "./Pages/SignUp/SignUp";
 import { Payment } from "./Pages/Payment/Payment";
+import { MyPage } from "./Pages/MyPage/MyPage";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/seller-my-page" element={<SellerMyPage />} />
             <Route path="/signup-choose-role" element={<ChooseRole />} />
             <Route path="/signup/:role" element={<SignUp />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
