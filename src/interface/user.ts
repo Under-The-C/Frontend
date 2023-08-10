@@ -7,6 +7,7 @@ export interface UserDto {
   address: string;
   detailAddress: string;
   profile?: string;
+  marketInfo?: string;
 }
 
 export interface SellerMarketDto {

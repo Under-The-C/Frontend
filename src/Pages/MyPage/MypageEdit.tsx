@@ -125,6 +125,20 @@ export const MypageEdit = () => {
               className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
             />
           </div>
+          {user.role === "seller" && (
+            <div className="flex flex-row w-full h-[15%] justify-center items-center my-10 ">
+              <label className="flex text-xl font-semibold w-32">
+                마켓 소개
+              </label>
+              <input
+                name="marketInfo"
+                value={user.marketInfo}
+                onChange={handleInput}
+                type="text"
+                className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
+              />
+            </div>
+          )}
           <div
             className="flex flex-col w-full justify-center items-end"
             onClick={handleSearchAddr.clickButton}

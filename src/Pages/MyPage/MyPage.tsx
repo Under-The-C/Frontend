@@ -12,7 +12,8 @@ const dummyUser = {
   address: "서울시 강남구",
   detailAddress: "역삼동",
   phone: "010-1234-5678",
-  role: "customer",
+  role: "seller",
+  marketInfo: "민수의 과일가게",
 };
 
 export const MyPage = () => {
@@ -43,47 +44,43 @@ export const MyPage = () => {
           </div>
           <div className="flex flex-row w-full h-[15%] justify-center items-center my-10">
             <label className="flex text-xl font-semibold w-32">성함</label>
-            <input
-              type="text"
-              value={user.name}
-              className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-              disabled={true}
-            />
+            <span className="items-center ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3 ">
+              {user.name}
+            </span>
           </div>
           <div className="flex flex-row w-full h-[15%] justify-center items-center my-10">
             <label className="flex text-xl font-semibold w-32">연락처</label>
-            <input
-              type="tel"
-              value={user.phone}
-              className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-              disabled={true}
-            />
+            <span className="items-center ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3 ">
+              {user.phone}
+            </span>
           </div>
           <div className="flex flex-row w-full h-[15%] justify-center items-center my-10 ">
             <label className="flex text-xl font-semibold w-32">닉네임</label>
-            <input
-              name="nickname"
-              value={user.email}
-              type="text"
-              className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-            />
+            <span className="items-center ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3 ">
+              {user.email}
+            </span>
           </div>
+          {user.role === "seller" && (
+            <div className="flex flex-row w-full h-[15%] justify-center items-center my-10 ">
+              <label className="flex text-xl font-semibold w-32">
+                마켓 소개
+              </label>
+              <span className="items-center ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3">
+                {user.marketInfo}
+              </span>
+            </div>
+          )}
           <div className="flex flex-row w-full justify-center items-center my-10">
             <label className="flex text-xl font-semibold w-32 px-3">주소</label>
-            <input
-              type="text"
-              value={user.address}
-              className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3 "
-            ></input>
+            <span className="items-center ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3 ">
+              {user.address}
+            </span>
           </div>
           <div className="flex flex-row w-full justify-center items-center my-10">
             <label className="flex text-xl font-semibold w-32">상세 주소</label>
-            <input
-              name="detailAddress"
-              type="text"
-              className="ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-              value={user.detailAddress}
-            />
+            <span className="items-center ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3 ">
+              {user.detailAddress}
+            </span>
           </div>
           <div className="flex w-full justify-center">
             <Button
