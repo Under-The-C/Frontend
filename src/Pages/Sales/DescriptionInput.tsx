@@ -36,9 +36,15 @@ export const DescriptionInput = () => {
           defaultValue={"과일"}
           onChange={inputChangeHandler}
         >
-          <option value="과일">과일</option>
-          <option value="채소">채소</option>
-          <option value="잡곡">쌀, 잡곡, 견과</option>
+          <option key={"과일"} value="과일">
+            과일
+          </option>
+          <option key={"채소"} value="채소">
+            채소
+          </option>
+          <option key={"쌀, 잡곡, 견과"} value="쌀, 잡곡, 견과">
+            쌀, 잡곡, 견과
+          </option>
         </select>
       </div>
       <div className="flex flex-grow w-full mt-5">
