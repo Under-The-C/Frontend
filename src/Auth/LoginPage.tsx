@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { loginState } from "../Atom/user";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
+import {SERVER} from "../config";
 
 const PageContainer = styled.div`
   display: flex;
@@ -61,8 +62,9 @@ export const LoginPage = () => {
       if (response.status === 200) {
         setLogin(true);
       }
-    } catch (error) {
+    } catch (error : any) {
       console.log(error);
+      alert(`에러: ${error.message}`);
     }
   };
 
