@@ -9,6 +9,7 @@ import { DescriptionSubtitleInput } from "./DescriptionSubtitleInput";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { salesState } from "../../Atom/sales";
 import { userState } from "../../Atom/user";
+import { formatDate } from "../../Utils/date";
 
 export const Sales = () => {
   const [sales, setSales] = useRecoilState(salesState);
@@ -21,16 +22,6 @@ export const Sales = () => {
       createdAt: formatDate(new Date()),
     });
   }, []);
-
-  const formatDate = (date: Date | null) => {
-    console.log(date);
-    if (!date) return "";
-    const year = date.getFullYear().toString();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    console.log(`${year}.${month}.${day}`);
-    return `${year}.${month}.${day}`;
-  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();

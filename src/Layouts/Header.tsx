@@ -27,7 +27,7 @@ const Header = () => {
 
   const handleOnClickSearch = (e: any) => {
     e.preventDefault();
-    navigate("/Search/" + search);
+    navigate("/search/" + search);
     setSearch("");
   };
 
