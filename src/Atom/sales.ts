@@ -5,8 +5,9 @@ import { SellerMarketDto } from "../interface/user";
 export const salesState = atom<SalesDto>({
   key: "salesState",
   default: {
-    mainImage: "",
-    productName: "",
+    seller_id: 0,
+    main_image: "",
+    name: "",
     price: 0,
     keyword: [],
     saleStartDate: "",
@@ -15,6 +16,8 @@ export const salesState = atom<SalesDto>({
     description: "",
     subDescription: "",
     subTitle: "",
+    category: "과일",
+    createdAt: "",
   },
 });
 
