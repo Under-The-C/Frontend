@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { buyState1 } from '../Customer/product';
+import { buyState } from "../../Atom/buy";
 import { useRecoilState,useRecoilValue } from "recoil";
 import { Container,Row,Col } from "react-bootstrap";
 import { BuyerForm } from "./BuyerForm";
@@ -43,15 +43,15 @@ const MainContainer = styled(Container)`
 
 
 export const Payment = () => {
-  const buy = useRecoilValue(buyState1);
+  const buy = useRecoilValue(buyState);
 
   return(
     <>
       <TextTitle>결제하기</TextTitle>
       <MainContainer>
         <Box>
-          <ImageSize src={buy.mainImage} alt={buy.productName} />
-          {buy.productName} 
+          <ImageSize src={buy.main_image} alt={buy.name} />
+          {buy.name} 
         </Box>
           <Price>{buy.price}원</Price> 
       </MainContainer>  
