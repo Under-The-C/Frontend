@@ -74,6 +74,21 @@ const Button = styled(BootstrapButton)`
   justify-content: center;
 `;
 
+const Button1 = styled(BootstrapButton)`
+  margin-top: 3vw;
+  margin-right:15vw;
+  width: 10vw;
+  display: flex;
+  height: auto;
+  justify-content: center;
+`;
+
+const Button1Wrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
 const ImageBox = styled.img`
   margin-top: 5vw;
   margin-left: auto;
@@ -99,19 +114,25 @@ export const Customer = () => {
     navigate("/productBox");
   };
 
+  const goSeller = () => {
+    navigate("/seller-my-page");
+  }
   return (
     <>
+    <Button1Wrapper>
+    <Button1 onClick={goSeller} className="bg-mainGreen"><span>수정하기</span></Button1>
+    </Button1Wrapper>
       <MainContainer>
-        <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
           <Row>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={6} >
               <MainImage>
                 <img src={buy.mainImage} alt={buy.productName} />
               </MainImage>
             </Col>
             <Col xs={12} md={6}>
               <ProductInfo1>
-                <h3>{buy.productName}</h3>
+                <p >{buy.productName}</p>
               </ProductInfo1>
               <ProductInfo>
                 <p>{buy.price}</p>
