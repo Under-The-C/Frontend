@@ -56,6 +56,7 @@ export const Payment = () => {
           <Price>{buy.price}원</Price> 
       </MainContainer>  
       <BuyerForm/>
+      
     </>
   );
 };

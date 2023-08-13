@@ -125,14 +125,14 @@ export const Customer = () => {
       <MainContainer>
           <form onSubmit={handleSubmit}>
           <Row>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={6} >
               <MainImage>
                 <img src={buy.mainImage} alt={buy.productName} />
               </MainImage>
             </Col>
             <Col xs={12} md={6}>
               <ProductInfo1>
-                <h3>{buy.productName}</h3>
+                <p >{buy.productName}</p>
               </ProductInfo1>
               <ProductInfo>
                 <p>{buy.price}</p>
