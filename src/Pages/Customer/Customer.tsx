@@ -12,7 +12,6 @@ import {
 import { useProduct } from "./api";
 import styled from "styled-components";
 import { DropBar } from "./DropBar";
-import { buyState1 } from "./product";
 import { BuyItem } from "../../interface/buy";
 import { SellerLink } from "./sellerLink";
 
@@ -103,15 +102,15 @@ const ImageBox = styled.img`
 export const Customer = () => {
   const navigate = useNavigate();
   const { data: buyItem, isLoading, isError } = useProduct();
-  const buy = useRecoilValue(buyState1);
+  const buy = useRecoilValue(buyState);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     navigate("/payment");
   };
 
-  const productBox = () => {
-    navigate("/productBox");
+  const Basket = () => {
+    navigate("/Basket");
   };
 
   const goSeller = () => {
@@ -127,12 +126,12 @@ export const Customer = () => {
           <Row>
             <Col xs={12} md={6} >
               <MainImage>
-                <img src={buy.mainImage} alt={buy.productName} />
+                <img src={buy.main_image} alt={buy.name} />
               </MainImage>
             </Col>
             <Col xs={12} md={6}>
               <ProductInfo1>
-                <p >{buy.productName}</p>
+                <p >{buy.name}</p>
               </ProductInfo1>
               <ProductInfo>
                 <p>{buy.price}</p>
@@ -149,7 +148,7 @@ export const Customer = () => {
                 </Button>
               </Row>
               <Row>
-                <Button className="bg-mainGreen">
+                <Button onClick={Basket} className="bg-mainGreen">
                   <span>장바구니</span>
                 </Button>
               </Row>
