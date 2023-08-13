@@ -18,7 +18,7 @@ import { MyPage } from "./Pages/MyPage/MyPage";
 import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
 import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
-
+import { LoginPage } from "./Auth/LoginPage";
 import Review from "./Pages/Review/Review";
 import { MypageEdit } from "./Pages/MyPage/MypageEdit";
 import { Search } from "./Pages/Search/Search";
