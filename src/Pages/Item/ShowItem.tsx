@@ -1,5 +1,5 @@
 // Basket.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilValue,useRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
 import {
@@ -96,12 +96,15 @@ const item: BasketItem[] = [
 
 export const Basket = () => {
   const [basket, setBasket] = useRecoilState(basketState);
+  const [selectedItems, setSelectedItems] = useState<boolean[]>([]);
 
   useEffect(() => {
     setBasket(item);
   }, [setBasket]);
 
- 
+  useEffect(()=>{
+    setSelectedItems(item.map(()=>false));      
+ },[]);
 
   const handleQuantityChange = (index:number, event:React.ChangeEvent<HTMLInputElement>) => {
     const newBasket = [...basket];
@@ -137,7 +140,7 @@ export const Basket = () => {
           </ItemInfo>
         </ItemWrapper>
       ))}
-      <Button className="bg-mainGreen" disabled={basket.length === 0}><Link to={basket.length ? "/payment" : "#"}>결제하기</Link></Button>
+      <Button className="bg-mainGreen" disabled={basket.length === 0}><Link to={basket.length!==0 ? "/payment" : "#"}>결제하기</Link></Button>
     </BasketContainer>
   );
 };
