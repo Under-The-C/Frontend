@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { useRecoilState } from "recoil";
-import { salesState } from "../../Atom/sales";
+import { signupState } from "../../Atom/signup";
 
 export const ImageUpload = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [sales, setSales] = useRecoilState(salesState);
+  const [signup, setSignup] = useRecoilState(signupState);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -15,9 +15,9 @@ export const ImageUpload = () => {
       // 이미지 미리보기
       reader.onload = () => {
         if (reader.result) {
-          setSales((prevSales) => ({
+          setSignup((prevSales) => ({
             ...prevSales,
-            main_image: reader.result as string,
+            image: reader.result as string,
           }));
         }
       };
@@ -43,11 +43,11 @@ export const ImageUpload = () => {
           onChange={handleImageChange}
           style={{ display: "none" }}
         />
-        {sales.main_image ? (
+        {signup.image ? (
           <img
-            src={sales.main_image}
+            src={signup.image}
             className="w-full h-full image-contain"
-            alt="main_image"
+            alt="cre_image"
             onClick={handleChangeImageClick}
           />
         ) : (

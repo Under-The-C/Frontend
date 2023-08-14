@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ImageUpload } from "./ImageUpload";
 import { Button, Container } from "react-bootstrap";
 import { DescriptionInput } from "./DescriptionInput";
@@ -8,19 +8,30 @@ import { KeywordInput } from "./KeywordInput";
 import { DescriptionSubtitleInput } from "./DescriptionSubtitleInput";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { salesState } from "../../Atom/sales";
+import { userState } from "../../Atom/user";
+import { formatDate } from "../../Utils/date";
 
 export const Sales = () => {
-  const sales = useRecoilValue(salesState);
+  const [sales, setSales] = useRecoilState(salesState);
+  const user = useRecoilValue(userState);
+
+  useEffect(() => {
+    setSales({
+      ...sales,
+      seller_id: user.id,
+      createdAt: formatDate(new Date()),
+    });
+  }, []);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("submit");
 
-    if (!sales.mainImage) {
+    if (!sales.main_image) {
       alert("메인이미지를 등록해주세요.");
       return;
     }
-    if (!sales.productName) {
+    if (!sales.name) {
       alert("상품명을 등록해주세요.");
       return;
     }
@@ -56,6 +67,7 @@ export const Sales = () => {
       alert("판매 종료 날짜를 입력해주세요.");
       return;
     }
+    console.log(sales);
     //submit api call
   };
 

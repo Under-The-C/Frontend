@@ -27,7 +27,7 @@ const Header = () => {
 
   const handleOnClickSearch = (e: any) => {
     e.preventDefault();
-    navigate("/Search/" + search);
+    navigate("/search/" + search);
     setSearch("");
   };
 
@@ -81,6 +81,11 @@ const Header = () => {
             ) : null}
             {loggedIn ? (
               <>
+                {user.role === "seller" && (
+                  <Nav.Link as={Link} to="/seller-my-page">
+                    판매자 마이페이지
+                  </Nav.Link>
+                )}
                 <Nav.Link as={Link} to="/MyPage">
                   마이페이지
                 </Nav.Link>

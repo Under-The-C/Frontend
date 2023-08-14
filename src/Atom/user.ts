@@ -15,29 +15,13 @@ export const userState = atom<UserDto>({
     name: "",
     email: "",
     role: "", // "admin" | "customer" | "seller" ? 모름
+    profile: "",
+    address: "",
+    detailAddress: "",
+    phone: "",
+    marketInfo: "",
   },
 });
-
-//export const sellerState = atom({
-//  key: "sellerState",
-//  default: {
-//    user: {
-//      id: 0,
-//      name: "",
-//      email: "",
-//      role: "",
-//    } as UserDto,
-//    market: {
-//      sellerId: 0,
-//      sellerName: "",
-//      sellerProfileImage: "",
-//      sellerRating: 0,
-//      sellerReviewCount: 0,
-//      marketInfo: "",
-//    } as SellerMarketDto,
-//    salseItemsSummaryList: [] as salesItemSummaryDto[],
-//  },
-//});
 
 export const sellerState = selector({
   key: "sellerState",

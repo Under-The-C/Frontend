@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useRecoilState } from "recoil";
 import { salesState } from "../../Atom/sales";
+import { formatDate } from "../../Utils/date";
 
 export const DatePick = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -13,14 +14,6 @@ export const DatePick = () => {
 
   const oneYearFromToday = new Date();
   oneYearFromToday.setFullYear(oneYearFromToday.getFullYear() + 1);
-
-  const formatDate = (date: Date | null) => {
-    if (!date) return "";
-    const year = date.getFullYear().toString();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${year}/${month}/${day}`;
-  };
 
   const handleStartDateChange = (date: Date) => {
     setStartDate(date);
