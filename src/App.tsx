@@ -18,10 +18,11 @@ import { MyPage } from "./Pages/MyPage/MyPage";
 import { SellerMyPage } from "./Pages/Seller/SellerMyPage";
 import Header from "./Layouts/Header";
 import Footer from "./Layouts/Footer";
-
+import { LoginPage } from "./Auth/LoginPage";
 import Review from "./Pages/Review/Review";
 import { MypageEdit } from "./Pages/MyPage/MypageEdit";
 import { Search } from "./Pages/Search/Search";
+import { Basket } from "./Pages/Item/ShowItem";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/sales" element={<Sales />} />
             <Route path="/buy" element={<Customer />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/Basket" element={<Basket/>}/>
             <Route path="/seller-my-page" element={<SellerMyPage />} />
             <Route path="/review-write" element={<Review />} />
             <Route path="/loginPage" element={<LoginPage/>} />

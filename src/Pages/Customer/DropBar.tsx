@@ -19,9 +19,9 @@ const CustomFormControl = styled(FormControl)`
 export const DropBar = () => {
 
 const [quantity, setQuantity] = useState(1);
-const [area, setArea] = useState("도서산간지역을 선택하세요");
 const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setQuantity(Number(e.target.value))            
+  setQuantity(Number(e.target.value));
+  console.log(quantity);            
 };
 
 return (
@@ -35,20 +35,15 @@ return (
                         <CustomFormControl
                         type="number"
                         placeholder="수량을 입력하세요"
-                        min="0"
+                        min="1"
                         value={quantity}
                         onChange={changeValue}
-                        
                         />
-                        <Dropdown.Header>배송지역 선택</Dropdown.Header>
-                        <Dropdown.Item onClick={() => setArea("기본")}>기본배송지역</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setArea("도서산간지역")}>도서산간지역(배송료+5000원)</Dropdown.Item>
-                        <Dropdown.Divider/>
+                        
                 </Dropdown.Menu>
             </CustomDropdown>
-        
+
         </>
-        
     )
 
 }
