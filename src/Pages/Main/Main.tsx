@@ -9,6 +9,7 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import { useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 import { loginState } from "../../Atom/user";
+import axiosInstance from "../../API/axios";
 const MainContainer = styled(Container)`
   padding-bottom: 10vh;
 `;
@@ -40,8 +41,8 @@ export const Main = () => {
   const [login,setLogin] = useRecoilState(loginState);
   const fetchLoginInfo = async () => {
     try {
-      const response = await axios.get(
-        "https://115.85.181.92/api/v1/user/me"
+      const response = await axiosInstance.get(
+        "/v1/user/me"
       );
       console.log(response.data);
       if (response.status === 200) {
