@@ -1,11 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { signupState } from "../../Atom/signup";
+import axios from "axios";
+import { SERVER } from "../../config";
+import { loginState } from "../../Atom/user";
 
 export const SignUp = () => {
+  const setLogin = useSetRecoilState(loginState);
+  const naviagate = useNavigate();
   const param = useParams();
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const [signup, setSignup] = useRecoilState(signupState);
@@ -60,7 +65,7 @@ export const SignUp = () => {
     setSignup({ ...signup, [name]: value });
   };
 
-  const handleOnSubmit = (e: any) => {
+  const handleOnSubmit = async (e: any) => {
     e.preventDefault();
     if (signup.name === "") {
       alert("이름을 입력해주세요");
@@ -82,6 +87,10 @@ export const SignUp = () => {
       alert("사업자 등록증을 등록해주세요");
       return;
     }
+    const res = await axios.post(SERVER.SERVER_API + "/v1/user/add", signup);
+    console.log(res.data);
+    setLogin(true);
+    naviagate("/");
   };
 
   return (
@@ -97,6 +106,7 @@ export const SignUp = () => {
               <input
                 type="text"
                 name="name"
+                value={signup.name}
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
                 onChange={handleInput}
               />
@@ -106,6 +116,7 @@ export const SignUp = () => {
               <input
                 type="tel"
                 name="phone"
+                value={signup.phone}
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
                 onChange={handleInput}
               />
@@ -115,6 +126,7 @@ export const SignUp = () => {
               <input
                 name="email"
                 type="text"
+                value={signup.email}
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
                 disabled={true}
               />
