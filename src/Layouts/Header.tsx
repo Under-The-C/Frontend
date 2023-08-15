@@ -77,7 +77,7 @@ const Header = () => {
                 쌀, 잡곡, 견과
               </NavDropdown.Item>
             </NavDropdown>
-            {loggedIn && user.role !== "customer" ? (
+            {loggedIn && user.role === "seller" ? (
               <Nav.Link as={Link} to="/sales">
                 판매하기
               </Nav.Link>
