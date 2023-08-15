@@ -22,5 +22,5 @@ export interface BasketItem {
   name: string;
   price: number;
   category: string;
-  quantity: number;
+  count: number;
 }
