@@ -1,9 +1,20 @@
+import { sign } from "crypto";
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { signupState } from "../../Atom/signup";
 
 export const ChooseRole = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const setSignup = useSetRecoilState(signupState);
+  const email = searchParams.get("email");
+
+  useEffect(() => {
+    if (!email) return;
+    setSignup((prev) => ({ ...prev, email: email }));
+  }, []);
 
   const handleSignUp = (event: any) => {
     const role = event.currentTarget.id;
