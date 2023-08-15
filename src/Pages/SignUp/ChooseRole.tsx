@@ -9,9 +9,10 @@ export const ChooseRole = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const setSignup = useSetRecoilState(signupState);
-  const email = searchParams.get("email");
 
   useEffect(() => {
+    const email = searchParams.get("email");
+    console.log(email);
     if (!email) return;
     setSignup((prev) => ({ ...prev, email: email }));
   }, []);
