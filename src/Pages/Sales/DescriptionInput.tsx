@@ -52,7 +52,7 @@ export const DescriptionInput = () => {
           <span className="font-bold text-xl">상품명</span>
           <input
             name="title"
-            className="w-[40vw] h-[5vh] ml-5 p-2 bg-slate-100 outline-none border-none rounded-lg font-bold text-lg"
+            className="w-[40vw] h-[5vh] ml-5 p-2 bg-slate-100 outline-none border-none v font-bold text-lg"
             type="text"
             value={sales.name}
             onChange={inputChangeHandler}
