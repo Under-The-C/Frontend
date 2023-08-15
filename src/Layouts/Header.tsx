@@ -99,7 +99,7 @@ const Header = () => {
                   variant="light"
                   size="sm"
                   className="ml-2 p-2"
-                  onClick={() => navigate("/LoginPage")}
+                  onClick={() => navigate("/loginPage")}
                 >
                   로그인
                 </Button>
