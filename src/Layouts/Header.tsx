@@ -89,6 +89,11 @@ const Header = () => {
                     판매자 마이페이지
                   </Nav.Link>
                 )}
+                {user.role === "buyer" && (
+                  <Nav.Link as={Link} to="/cusMyPage">
+                    구매자 마이페이지
+                  </Nav.Link>
+                )}
                 <Nav.Link as={Link} to="/MyPage">
                   마이페이지
                 </Nav.Link>
