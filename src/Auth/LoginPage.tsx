@@ -53,25 +53,10 @@ export const LoginPage = () => {
   const [login, setLogin] = useRecoilState(loginState);
 
   const onClick = () => {
-    window.location.href = "https://115.85.181.92/login/oauth2/code/kakao";
+    window.location.href = 
+    "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=be84e5c954c05f4d77886292167f2621&redirect_uri=https://115.85.181.92/login/oauth2/code/kakao";
   };
-
-  const fetchLoginInfo = async () => {
-    try {
-      const response = await axios.post("https://115.85.181.92/api/v1/seller/oauth");
-      if (response.status === 200) {
-        setLogin(true);
-      }
-    } catch (error : any) {
-      console.log(error);
-      alert(`에러: ${error.message}`);
-    }
-  };
-
-  useEffect(() => {
-    fetchLoginInfo();
-  }, []);
-
+  
   return (
     <PageContainer>
       <Title>로그인</Title>

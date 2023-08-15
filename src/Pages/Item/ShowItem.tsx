@@ -1,7 +1,7 @@
 // Basket.tsx
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue,useRecoilState } from 'recoil';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Button as BootstrapButton,
   Container,
@@ -69,10 +69,16 @@ const Button = styled(BootstrapButton)`
 const DeleteButton = styled(BootstrapButton)`
   margin-top: 1rem;
   height:auto;
-  w
   font-size:0.8em;
 `;
+const CheckboxWrapper = styled.div`
+    margin-right:2rem;
 
+    input[type="checkbox"] {
+        transform : scale(1.5);
+        margin-right :0.5rem; 
+    }
+`;
 const item: BasketItem[] = [
     {
     id: 1,
@@ -81,7 +87,7 @@ const item: BasketItem[] = [
     name: "복숭아",
     price: 12000,
     category:"과일",
-    quantity: 2,
+    count: 2,
 },
 {
     id: 2,
@@ -90,14 +96,14 @@ const item: BasketItem[] = [
     name: "견과",
     price: 10000,
     category:"곡물",
-    quantity: 3,
+    count: 3,
 },
 ];
 
 export const Basket = () => {
   const [basket, setBasket] = useRecoilState(basketState);
   const [selectedItems, setSelectedItems] = useState<boolean[]>([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     setBasket(item);
   }, [setBasket]);
@@ -108,7 +114,7 @@ export const Basket = () => {
 
   const handleQuantityChange = (index:number, event:React.ChangeEvent<HTMLInputElement>) => {
     const newBasket = [...basket];
-    newBasket[index] = { ...newBasket[index], quantity: parseInt(event.target.value, 10), };
+    newBasket[index] = { ...newBasket[index], count: parseInt(event.target.value, 10), };
     setBasket(newBasket);
   };
 
@@ -118,11 +124,30 @@ export const Basket = () => {
     setBasket(newBasket);
   };
   
+  const toggleCheckbox=(index:number)=>{
+    setSelectedItems(selectedItems.map((v,i)=>i===index?!v:v));
+  };
+
+  const alertMessage = () => {
+    if (selectedItems.every((selected) => !selected)) {
+      alert("선택된 상품이 없습니다.");
+    } else {
+      navigate("/payment");
+    }
+  };
+  
   return (
     <BasketContainer>
       <Text>장바구니</Text>
       {basket.map((item, index) => (
         <ItemWrapper key={index}>
+          <CheckboxWrapper>
+            <input 
+              type="checkbox"
+              checked={selectedItems[index]} 
+              onChange={()=>toggleCheckbox(index)}
+            />
+          </CheckboxWrapper>
           <img src={item.main_image} alt={item.name} />
           <ItemInfo>
             <Text1>{item.name}</Text1>
@@ -131,16 +156,19 @@ export const Basket = () => {
             <QuantityInput
               type="number"
               min="1"
-              value={item.quantity}
+              value={item.count}
               className="rounded-lg bg-slate-100"
               onChange={(event:React.ChangeEvent<HTMLInputElement>) => handleQuantityChange(index, event)}
             /></p>
             <DeleteButton className="bg-mainGreen" onClick={() => handleItemDelete(index)} >삭제하기</DeleteButton>
-
           </ItemInfo>
         </ItemWrapper>
       ))}
-      <Button className="bg-mainGreen" disabled={basket.length === 0}><Link to={basket.length!==0 ? "/payment" : "#"}>결제하기</Link></Button>
+      <Button onClick={alertMessage} className="bg-mainGreen" >
+      
+        결제하기
+      
+      </Button>
     </BasketContainer>
   );
 };
