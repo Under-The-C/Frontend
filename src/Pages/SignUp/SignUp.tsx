@@ -26,13 +26,13 @@ export const SignUp = () => {
         if (reader.result) {
           setSignup({
             ...signup,
-            image: reader.result as string,
+            certificate: reader.result as string,
           });
         }
       };
       reader.readAsDataURL(file);
     } catch (error) {
-      console.error("Error image load:", error);
+      console.error("Ercertificate load:", error);
     }
   };
 
@@ -62,6 +62,14 @@ export const SignUp = () => {
 
   const handleOnSubmit = (e: any) => {
     e.preventDefault();
+    if (signup.name === "") {
+      alert("이름을 입력해주세요");
+      return;
+    }
+    if (signup.phone === "") {
+      alert("번호를 입력해주세요");
+      return;
+    }
     if (signup.address === "") {
       alert("주소를 입력해주세요");
       return;
@@ -70,11 +78,7 @@ export const SignUp = () => {
       alert("상세 주소를 입력해주세요");
       return;
     }
-    if (signup.nickname === "") {
-      alert("닉네임을 입력해주세요");
-      return;
-    }
-    if (signup.role === "seller" && signup.image === "") {
+    if (signup.role === "seller" && signup.certificate === "") {
       alert("사업자 등록증을 등록해주세요");
       return;
     }
@@ -92,25 +96,27 @@ export const SignUp = () => {
               <label className="flex text-xl font-semibold w-32">성함</label>
               <input
                 type="text"
+                name="name"
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-                disabled={true}
+                onChange={handleInput}
               />
             </div>
             <div className="flex flex-row w-full h-[15%] justify-center items-center my-10">
               <label className="flex text-xl font-semibold w-32">연락처</label>
               <input
                 type="tel"
+                name="phone"
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-                disabled={true}
+                onChange={handleInput}
               />
             </div>
             <div className="flex flex-row w-full h-[15%] justify-center items-center my-10 ">
-              <label className="flex text-xl font-semibold w-32">닉네임</label>
+              <label className="flex text-xl font-semibold w-32">이메일</label>
               <input
-                name="nickname"
+                name="email"
                 type="text"
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-                onChange={handleInput}
+                disabled={true}
               />
             </div>
             <div
@@ -172,9 +178,9 @@ export const SignUp = () => {
                       onChange={handleImageChange}
                       style={{ display: "none" }}
                     />
-                    {signup.image ? (
+                    {signup.certificate ? (
                       <img
-                        src={signup.image}
+                        src={signup.certificate}
                         className="w-full h-full image-contain"
                         alt="mainImage"
                         onClick={handleChangeImageClick}
