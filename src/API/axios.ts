@@ -1,7 +1,8 @@
 import axios from "axios";
+import {SERVER} from "../config";
 
 const axiosInstance = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER}`,
+  baseURL: SERVER.SERVER_API,
   withCredentials: true,
 });
 
