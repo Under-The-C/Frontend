@@ -8,6 +8,8 @@ import { NavDropdown } from "react-bootstrap";
 import { loginState, userState } from "../Atom/user";
 import Form from "react-bootstrap/Form";
 import { useState, useRef } from "react";
+import { SERVER } from "../config";
+import axios from "axios";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,8 +17,9 @@ const Header = () => {
   const [search, setSearch] = useState("");
   const user = useRecoilValue(userState);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setLoggedIn(false);
+    const res = await axios.get(SERVER.SERVER_API + "/v1/logout");
     window.location.reload();
     navigate("/");
   };
@@ -84,6 +87,11 @@ const Header = () => {
                 {user.role === "seller" && (
                   <Nav.Link as={Link} to="/seller-my-page">
                     판매자 마이페이지
+                  </Nav.Link>
+                )}
+                {user.role === "buyer" && (
+                  <Nav.Link as={Link} to="/cusMyPage">
+                    구매자 마이페이지
                   </Nav.Link>
                 )}
                 <Nav.Link as={Link} to="/MyPage">
