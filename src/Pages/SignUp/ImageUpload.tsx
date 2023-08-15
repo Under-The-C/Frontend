@@ -43,9 +43,9 @@ export const ImageUpload = () => {
           onChange={handleImageChange}
           style={{ display: "none" }}
         />
-        {signup.image ? (
+        {signup.certificate ? (
           <img
-            src={signup.image}
+            src={signup.certificate}
             className="w-full h-full image-contain"
             alt="cre_image"
             onClick={handleChangeImageClick}
