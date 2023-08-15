@@ -53,6 +53,7 @@ export const LoginPage = () => {
   const [login, setLogin] = useRecoilState(loginState);
 
   const onClick = () => {
+
     window.location.href =
       "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=be84e5c954c05f4d77886292167f2621&redirect_uri=https://115.85.181.92/login/oauth2/code/kakao";
   };
@@ -74,6 +75,7 @@ export const LoginPage = () => {
   useEffect(() => {
     //fetchLoginInfo();
   }, []);
+
 
   return (
     <PageContainer>

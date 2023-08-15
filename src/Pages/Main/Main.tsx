@@ -1,12 +1,14 @@
-import React from "react";
+import {useEffect} from "react";
 import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
 import fruit from "../../img/peach.jpg";
 import vegetable from "../../img/vagetable.jpg";
 import cereal from "../../img/Cereal.jpg";
 import { Link } from "react-router-dom";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { useQuery, useQueryClient } from "react-query";
-
+import axios from "axios";
+import { loginState } from "../../Atom/user";
 const MainContainer = styled(Container)`
   padding-bottom: 10vh;
 `;
@@ -35,7 +37,27 @@ const SmallComponent = styled.img`
 `;
 
 export const Main = () => {
-  // ...
+  const [login,setLogin] = useRecoilState(loginState);
+  const fetchLoginInfo = async () => {
+    try {
+      const response = await axios.get(
+        "https://115.85.181.92/api/v1/user/me"
+      );
+      console.log(response.data);
+      if (response.status === 200) {
+        setLogin(true);
+        
+      }
+    } catch (error: any) {
+      console.log(error);
+      alert("");
+    }
+  };
+  
+  useEffect(() => {
+    fetchLoginInfo();
+  }, []);
+
   return (
     <>
     <MainContainer>

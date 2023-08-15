@@ -23,6 +23,7 @@ import Review from "./Pages/Review/Review";
 import { MypageEdit } from "./Pages/MyPage/MypageEdit";
 import { Search } from "./Pages/Search/Search";
 import { Basket } from "./Pages/Item/ShowItem";
+import { CusMyPage } from "./Pages/CusMyPage/CusMyPage";
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/loginPage" element={<LoginPage/>} />
             <Route path="/signup-choose-role" element={<ChooseRole />} />
             <Route path="/signup/:role" element={<SignUp />} />
+            <Route path="/cusMyPage" element={<CusMyPage />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/mypage-edit" element={<MypageEdit />} />
             <Route path="/search/:word" element={<Search />} />
