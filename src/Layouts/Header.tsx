@@ -16,12 +16,19 @@ const Header = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(loginState);
   const [search, setSearch] = useState("");
   const user = useRecoilValue(userState);
+
   console.log(loggedIn);
   const handleLogout = async () => {
     setLoggedIn(false);
+    /*
     const res = await axios.get(SERVER.SERVER_API + "/v1/logout");
     window.location.reload();
-    navigate("/");
+    */
+    axios.get(SERVER.SERVER_API + "/v1/logout").then((response) => {
+      if (response.data.success){
+          navigate("/loginPage");
+      }});
+    //navigate("/");
   };
 
   const handleOnChangeSearch = (e: any) => {
