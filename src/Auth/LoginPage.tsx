@@ -7,7 +7,6 @@ import { Button } from "react-bootstrap";
 import { SERVER } from "../config";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../API/axios";
-import { SERVER } from "../config";
 
 const PageContainer = styled.div`
   display: flex;
