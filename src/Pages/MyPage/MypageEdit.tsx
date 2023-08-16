@@ -29,6 +29,14 @@ export const MypageEdit = () => {
     navigate(-1);
   };
 
+  const handelClickSecession = () => {
+
+    window.location.href =
+      "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=be84e5c954c05f4d77886292167f2621&redirect_uri=https://115.85.181.92/login/oauth2/kakao-unlink";
+    
+    navigate("/");
+  };
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     const reader: FileReader | null = new FileReader();
@@ -76,6 +84,13 @@ export const MypageEdit = () => {
           <span className="font-black text-[3.5rem]">마이페이지</span>
         </div>
         <div className="flex justify-between flex-col w-[70vw] mt-2 p-10 bg-[#9EEBA5] rounded-3xl">
+          <Button
+              variant="primary"
+              className="ml-10 h-10 rounded-md outline-none border-none bg-mint text-black w-32"
+              onClick={handelClickSecession}
+            >
+              회원탈퇴
+            </Button>
           <div className="flex w-full h-[18vh] justify-center items-center flex-col">
             <input
               type="file"
