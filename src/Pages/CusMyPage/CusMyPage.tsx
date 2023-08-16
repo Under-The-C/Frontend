@@ -27,10 +27,12 @@ const MainContainer = styled(Container)`
   display:flex;
   item-align: space-between;
 `;
+
 const ProfileWrap = styled.div`
   display:flex;
   flex-direction: column;
 `;
+
 const Wrapper = styled.div`
   display:flex;
   justify-contents:center;
@@ -42,7 +44,6 @@ const Wrapper = styled.div`
 const ReviewBox = styled.div`
   display:flex;
   justify-contents:center;
-  
 `;
 
 const Button = styled(BootstrapButton)`
@@ -50,7 +51,6 @@ const Button = styled(BootstrapButton)`
   height: 2em; 
   color:black;
   border: none;
-  
   justify-content: center;
   margin-top: 0.5vw;
   font-size: 1rem;
@@ -79,6 +79,11 @@ export const CusMyPage = () => {
   const [reviewImages, setReviewImages] = useState([]);
   const [asyncErr, setAsyncErr] = useState(false);
   const [user,setUser] = useRecoilState(userState);
+  const navigate = useNavigate();
+  const onClick = () => {
+    navigate("/mypage-edit");
+  };  
+
   useEffect(() => {
     const fetchReviewImages = async () => {
       try {
@@ -112,7 +117,7 @@ export const CusMyPage = () => {
     />
     <ProfileWrap>
       <p style={{fontSize:"1.5rem"}}>구매자님 반갑습니다. </p>
-      <ProfileButton className="bg-mainGreen">나의 프로필</ProfileButton>
+      <ProfileButton onClick={onClick} className="bg-mainGreen">나의 프로필</ProfileButton>
     </ProfileWrap>
      </Wrapper> 
       <Wrapper>

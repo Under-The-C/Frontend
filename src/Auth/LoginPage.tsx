@@ -5,6 +5,7 @@ import { loginState } from "../Atom/user";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
 import { SERVER } from "../config";
+import { useNavigate } from "react-router-dom";
 
 const PageContainer = styled.div`
   display: flex;
@@ -51,12 +52,13 @@ const KakaoLoginButton = styled(Button)`
 
 export const LoginPage = () => {
   const [login, setLogin] = useRecoilState(loginState);
-
+  const navigate = useNavigate();
   const onClick = () => {
 
     window.location.href =
       "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=be84e5c954c05f4d77886292167f2621&redirect_uri=https://115.85.181.92/login/oauth2/code/kakao";
-  };
+    navigate("/login-success");
+    };
 
   const fetchLoginInfo = async () => {
     try {
