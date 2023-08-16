@@ -16,7 +16,7 @@ const Header = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(loginState);
   const [search, setSearch] = useState("");
   const user = useRecoilValue(userState);
-
+  console.log(loggedIn);
   const handleLogout = async () => {
     setLoggedIn(false);
     const res = await axios.get(SERVER.SERVER_API + "/v1/logout");
@@ -82,7 +82,7 @@ const Header = () => {
                 판매하기
               </Nav.Link>
             ) : null}
-            {loggedIn ? (
+            {loggedIn === false ? (
               <>
                 {user.role === "seller" && (
                   <Nav.Link as={Link} to="/seller-my-page">
