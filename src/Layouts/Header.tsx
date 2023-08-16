@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 import { useState, useRef } from "react";
 import { SERVER } from "../config";
 import axios from "axios";
-
+import axiosInstance from "../API/axios";
 const Header = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useRecoilState(loginState);
@@ -20,7 +20,7 @@ const Header = () => {
   console.log(loggedIn);
   const handleLogout = async () => {
     setLoggedIn(false);
-    const res = await axios.get(SERVER.SERVER_API + "/v1/logout");
+    const res = await axiosInstance.get("/v1/logout");
     window.location.reload();
     navigate("/loginPage");
   };
