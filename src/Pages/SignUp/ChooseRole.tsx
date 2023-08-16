@@ -7,15 +7,7 @@ import { signupState } from "../../Atom/signup";
 
 export const ChooseRole = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
   const setSignup = useSetRecoilState(signupState);
-
-  useEffect(() => {
-    const email = searchParams.get("email");
-    console.log(email);
-    if (!email) return;
-    setSignup((prev) => ({ ...prev, email: email }));
-  }, []);
 
   const handleSignUp = (event: any) => {
     const role = event.currentTarget.id;
