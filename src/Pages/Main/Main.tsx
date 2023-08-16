@@ -10,6 +10,7 @@ import { useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 import { loginState } from "../../Atom/user";
 import axiosInstance from "../../API/axios";
+
 const MainContainer = styled(Container)`
   padding-bottom: 10vh;
 `;
