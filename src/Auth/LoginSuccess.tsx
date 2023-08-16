@@ -25,7 +25,6 @@ export const LoginSuccess = () => {
   };
 
   useEffect(() => {
-    // 토큰을 쿼리스트링으로부터 추출합니다.
     const parsed = queryString.parse(window.location.search);
     const { access_token: accessToken } = parsed;
     console.log(accessToken);
@@ -33,8 +32,7 @@ export const LoginSuccess = () => {
     if (typeof accessToken === 'string') {
         loginUser(accessToken);
       } else {
-        // accessToken이 올바른 타입이 아닌 경우 로그인 페이지로 리다이렉션합니다.
-        navigate('/login');
+        navigate('/loginPage');
       }
   }, []);
 
