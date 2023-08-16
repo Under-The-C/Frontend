@@ -5,7 +5,6 @@ import queryString from "query-string";
 import axios from "axios";
 import { loginState } from "../Atom/user";
 import axiosInstance from "../API/axios";
-import { SERVER } from "../config";
 
 export const LoginSuccess = () => {
   const navigate = useNavigate();
@@ -14,8 +13,8 @@ export const LoginSuccess = () => {
 
   const loginUser = async (token: string) => {
     try {
-      const response = await axios.post(
-        SERVER.SERVER_API+`/v1/login?access_token=${token}`
+      const response = await axiosInstance.post(
+        `/v1/login?access_token=${token}`
       );
       
       if (response.status === 200) {
