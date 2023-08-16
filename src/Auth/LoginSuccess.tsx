@@ -25,7 +25,6 @@ export const LoginSuccess = () => {
   };
 
   useEffect(() => {
-    // 토큰을 쿼리스트링으로부터 추출합니다.
     const parsed = queryString.parse(window.location.search);
     const { access_token: accessToken } = parsed;
     console.log(accessToken);
