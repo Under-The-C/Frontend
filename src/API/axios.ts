@@ -1,5 +1,5 @@
 import axios from "axios";
-import {SERVER} from "../config";
+import { SERVER } from "../config";
 
 const axiosInstance = axios.create({
   baseURL: SERVER.SERVER_API,
@@ -9,10 +9,6 @@ const axiosInstance = axios.create({
 //session으로 할거면 안씀
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
     return config;
   },
   (error) => {
