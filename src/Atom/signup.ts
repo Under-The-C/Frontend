@@ -5,12 +5,10 @@ export const signupState = atom<SignupStateDto>({
   key: "signupState",
   default: {
     name: "",
-    nickname: "",
-    email: "",
     phone: "",
     address: "",
     detailAddress: "",
     role: "",
-    certificate: "",
+    certificate: ""
   },
 });

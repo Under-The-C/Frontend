@@ -121,16 +121,6 @@ export const SignUp = () => {
                 onChange={handleInput}
               />
             </div>
-            <div className="flex flex-row w-full h-[15%] justify-center items-center my-10 ">
-              <label className="flex text-xl font-semibold w-32">이메일</label>
-              <input
-                name="email"
-                type="text"
-                value={signup.email}
-                className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-                disabled={true}
-              />
-            </div>
             <div
               className="flex flex-col w-full justify-center items-end"
               onClick={handleSearchAddr.clickButton}
