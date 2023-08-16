@@ -7,6 +7,8 @@ import { Button } from "react-bootstrap";
 import { SERVER } from "../config";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../API/axios";
+import { SERVER } from "../config";
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,7 +61,7 @@ export const LoginPage = () => {
     navigate("/login-success");
   };
   const onClick1 = async () => {
-    const res = await axiosInstance.get("/v1/logout");
+    const res = await axios.get("https://115.85.181.92/api/v1/logout",{withCredentials: true,});
     window.location.reload();
     navigate("/loginPage");
   };
