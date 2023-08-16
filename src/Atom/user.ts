@@ -1,11 +1,15 @@
-import { atom, selector } from "recoil";
+import { atom, selector} from "recoil";
 import { SellerMarketDto, UserDto } from "../interface/user";
 import { sellerMarketState, salesItemSummaryListState } from "./sales";
 import { salesItemSummaryDto } from "../interface/sales";
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 export const loginState = atom({
   key: "loginState",
   default: false,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userState = atom<UserDto>({
