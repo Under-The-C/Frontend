@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import queryString from "query-string";
 import axios from "axios";
 import { loginState } from "../Atom/user";
+import axiosInstance from "../API/axios";
 
 export const LoginSuccess = () => {
   const navigate = useNavigate();
@@ -12,7 +13,9 @@ export const LoginSuccess = () => {
 
   const loginUser = async (token: string) => {
     try {
-      const response = await axios.post(`/api/v1/login?access_token=${token}`);
+      const response = await axiosInstance.post(
+        `/api/v1/login?access_token=${token}`
+      );
       if (response.status === 200) {
         setLogin(true);
         navigate("/main");
