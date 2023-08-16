@@ -14,7 +14,7 @@ export const LoginSuccess = () => {
   const loginUser = async (token: string) => {
     try {
       const response = await axiosInstance.post(
-        `/api/v1/login?access_token=${token}`
+        `/v1/login?access_token=${token}`
       );
       if (response.status === 200) {
         setLogin(true);
