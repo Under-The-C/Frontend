@@ -59,11 +59,7 @@ export const LoginPage = () => {
       "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=be84e5c954c05f4d77886292167f2621&redirect_uri=https://115.85.181.92/login/oauth2/code/kakao";
     navigate("/login-success");
   };
-  const onClick1 = async () => {
-    const res = await axios.get("https://115.85.181.92/api/v1/logout",{withCredentials: true,});
-    window.location.reload();
-    navigate("/loginPage");
-  };
+  
   const fetchLoginInfo = async () => {
     try {
       const response = await axios.post(
@@ -88,9 +84,6 @@ export const LoginPage = () => {
       <ContentContainer className="rounded-md">
         <LoginButtonContainer onClick={onClick}>
           <KakaoLoginButton variant="warning">카카오 로그인</KakaoLoginButton>
-        </LoginButtonContainer>
-        <LoginButtonContainer onClick={onClick1}>
-          <KakaoLoginButton variant="warning">로그아웃</KakaoLoginButton>
         </LoginButtonContainer>
       </ContentContainer>
     </PageContainer>
