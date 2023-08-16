@@ -9,8 +9,6 @@ import { productDto } from "../../interface/product";
 import { buyItemState } from "../../Atom/buy";
 import axiosInstance from "../../API/axios";
 
-<<<<<<< HEAD
-=======
 const dummydata: productDto[] = [
   {
     id: 1,
@@ -85,7 +83,7 @@ const dummydata: productDto[] = [
     rating: 4.5,
   },
 ];
->>>>>>> a668efd92283fa5abbfa9469b0c17cf3822b1661
+
 const MainContainer = styled(Container)`
   padding-bottom: 10vh;
   
@@ -104,7 +102,6 @@ const TopComponent = styled.img`
   max-height: calc(40vh);
   object-fit: contain;
   margin-top: 2vh;
-  
 `;
 
 const SmallComponent = styled.img`
@@ -119,11 +116,13 @@ const SmallComponent = styled.img`
 const Wrapper = styled.div`
   display:flex;
 `;
+
 const WrapperText = styled.div`
   display:flex;
   flex-direction: column;
   margin-left:4vw;
 `;
+
 export const Main = () => {
   const [product, setProduct] = useState<productDto[]>(dummydata);
   
@@ -139,7 +138,7 @@ export const Main = () => {
       }
     } catch (error: any) {
       console.log(error);
-      alert("");
+      
     }
   };
   

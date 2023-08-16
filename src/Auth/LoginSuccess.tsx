@@ -16,13 +16,13 @@ export const LoginSuccess = () => {
       const response = await axiosInstance.post(
         `/v1/login?access_token=${token}`
       );
+      
       if (response.status === 200) {
         setLogin(true);
-        navigate("/main");
+        navigate("/");
       }
     } catch (error: any) {
       console.log(error);
-      alert(`에러: ${error.message}`);
     }
   };
 
