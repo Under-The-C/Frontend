@@ -20,15 +20,9 @@ const Header = () => {
   console.log(loggedIn);
   const handleLogout = async () => {
     setLoggedIn(false);
-    /*
     const res = await axios.get(SERVER.SERVER_API + "/v1/logout");
     window.location.reload();
-    */
-    axios.get(SERVER.SERVER_API + "/v1/logout").then((response) => {
-      if (response.data.success){
-          navigate("/loginPage");
-      }});
-    //navigate("/");
+    navigate("/loginPage");
   };
 
   const handleOnChangeSearch = (e: any) => {
