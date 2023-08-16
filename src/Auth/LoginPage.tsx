@@ -69,7 +69,7 @@ export const LoginPage = () => {
       }
     } catch (error: any) {
       console.log(error);
-      alert(`에러: ${error.message}`);
+     
     }
   };
 

@@ -83,6 +83,7 @@ const dummydata: productDto[] = [
     rating: 4.5,
   },
 ];
+
 const MainContainer = styled(Container)`
   padding-bottom: 10vh;
   
@@ -93,6 +94,7 @@ const CenteredContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   height: 50vh;
+  width:80vw;
 `;
 
 const TopComponent = styled.img`
@@ -101,7 +103,6 @@ const TopComponent = styled.img`
   max-height: calc(40vh);
   object-fit: contain;
   margin-top: 2vh;
-  
 `;
 
 const SmallComponent = styled.img`
@@ -110,17 +111,20 @@ const SmallComponent = styled.img`
   display: flex;
   justify-content: center;
   object-fit: contain;
-  margin-left:4vw;
+  
 `;
 
 const Wrapper = styled.div`
   display:flex;
 `;
+
 const WrapperText = styled.div`
   display:flex;
   flex-direction: column;
-  margin-left:4vw;
+  
+  
 `;
+
 export const Main = () => {
   const [product, setProduct] = useState<productDto[]>(dummydata);
   
@@ -136,7 +140,7 @@ export const Main = () => {
       }
     } catch (error: any) {
       console.log(error);
-      alert("");
+      
     }
   };
   
@@ -155,36 +159,42 @@ export const Main = () => {
         <Container className="p-5">
           <Row className="p-5">
             <Col>
+            <span style={{fontSize:"1.5rem"}}>과일 대표 게시글</span>
               <Link to="/Category/과일">
                 <SmallComponent src={product[0].main_image} alt="react" />
                 <WrapperText>
                 <span style={{marginLeft:"1vw", fontSize:"1.5rem"}}>{product[0].name}</span>
+                <span style={{marginLeft:"1.2vw"}}>{product[0].price}원</span>
                 <Wrapper>
-                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1vw"}}/>
+                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.2vw"}}/>
                 <span>{product[0].rating}</span>
                 </Wrapper>
                 </WrapperText>
               </Link>
             </Col>
             <Col>
+            <span style={{fontSize:"1.5rem"}}>채소 대표 게시글</span>
               <Link to="/Category/채소">  
                 <SmallComponent src={product[1].main_image} alt="react" />
                 <WrapperText>
                 <span style={{marginLeft:"1vw", fontSize:"1.5rem"}}>{product[1].name}</span>
+                <span style={{marginLeft:"1.2vw"}}>{product[1].price}원</span>
                 <Wrapper>
-                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1vw"}}/>
+                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
                 <span>{product[1].rating}</span>
                 </Wrapper>
                 </WrapperText>
               </Link>
             </Col>
             <Col>
+            <span style={{fontSize:"1.5rem"}}>쌀, 잡곡, 견과 대표 게시글</span>
               <Link to="/Category/견과">
                 <SmallComponent src={product[2].main_image} alt="react" />
                 <WrapperText>
                 <span style={{marginLeft:"1vw", fontSize:"1.5rem"}}>{product[2].name}</span>
+                <span style={{marginLeft:"1.2vw"}}>{product[2].price}원</span>
                 <Wrapper>
-                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1vw"}}/>
+                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
                 <span>{product[2].rating}</span>
                 </Wrapper>
                 </WrapperText>    
