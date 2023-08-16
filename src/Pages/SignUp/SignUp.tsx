@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { signupState } from "../../Atom/signup";
@@ -15,6 +15,7 @@ export const SignUp = () => {
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const [signup, setSignup] = useRecoilState(signupState);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     if (!param.role) return;
@@ -87,7 +88,12 @@ export const SignUp = () => {
       alert("사업자 등록증을 등록해주세요");
       return;
     }
-    const res = await axios.post(SERVER.SERVER_API + "/v1/user/add", signup);
+    console.log(signup);
+    const res = await axios.post(
+      SERVER.SERVER_API +
+        `/v1/user/add?access_token=${searchParams.get("access_token")}`,
+      signup
+    );
     console.log(res.data);
     setLogin(true);
     naviagate("/");
@@ -119,16 +125,6 @@ export const SignUp = () => {
                 value={signup.phone}
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
                 onChange={handleInput}
-              />
-            </div>
-            <div className="flex flex-row w-full h-[15%] justify-center items-center my-10 ">
-              <label className="flex text-xl font-semibold w-32">이메일</label>
-              <input
-                name="email"
-                type="text"
-                value={signup.email}
-                className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
-                disabled={true}
               />
             </div>
             <div
