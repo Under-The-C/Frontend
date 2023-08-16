@@ -24,7 +24,7 @@ import { MypageEdit } from "./Pages/MyPage/MypageEdit";
 import { Search } from "./Pages/Search/Search";
 import { Basket } from "./Pages/Item/ShowItem";
 import { CusMyPage } from "./Pages/CusMyPage/CusMyPage";
-
+import { LoginSuccess } from "./Auth/LoginSuccess";
 const App = () => {
   return (
     <>
@@ -41,6 +41,7 @@ const App = () => {
             <Route path="/seller-my-page" element={<SellerMyPage />} />
             <Route path="/review-write" element={<Review />} />
             <Route path="/loginPage" element={<LoginPage/>} />
+            <Route path="/login-success" element={<LoginSuccess/>}/>
             <Route path="/signup-choose-role" element={<ChooseRole />} />
             <Route path="/signup/:role" element={<SignUp />} />
             <Route path="/cusMyPage" element={<CusMyPage />} />
