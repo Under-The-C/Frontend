@@ -25,6 +25,11 @@ export const buyState = atom<BuyItem>({
   },
 });
 
+export const buyItemState = atom<BuyItem[]>({
+  key: "buyItemState",
+  default: [],
+});
+
 export const formDataState = atom<FormData | null>({
   key: "formDataState",
   default: null,

@@ -33,8 +33,7 @@ export const LoginSuccess = () => {
     if (typeof accessToken === 'string') {
         loginUser(accessToken);
       } else {
-        // accessToken이 올바른 타입이 아닌 경우 로그인 페이지로 리다이렉션합니다.
-        navigate('/login');
+        navigate('/loginPage');
       }
   }, []);
 
