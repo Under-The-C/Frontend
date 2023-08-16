@@ -82,7 +82,7 @@ const Header = () => {
                 판매하기
               </Nav.Link>
             ) : null}
-            {loggedIn === false ? (
+            {loggedIn ? (
               <>
                 {user.role === "seller" && (
                   <Nav.Link as={Link} to="/seller-my-page">
