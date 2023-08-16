@@ -91,7 +91,7 @@ export const SignUp = () => {
     console.log(signup);
     const res = await axios.post(
       SERVER.SERVER_API +
-        `/v1/user/add?accessToken=${searchParams.get("access_token")}`,
+        `/v1/user/add?access_token=${searchParams.get("access_token")}`,
       signup
     );
     console.log(res.data);
