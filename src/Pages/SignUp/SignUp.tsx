@@ -97,12 +97,12 @@ export const SignUp = () => {
     form.append("address", JSON.stringify(signup.address));
     form.append("detailAddress", JSON.stringify(signup.detailAddress));
     form.append("role", JSON.stringify(signup.role));
-    console.log(formData);
+    console.log(form);
 
     const res = await axios.post(
       SERVER.SERVER_API +
         `/v1/user/add?access_token=${searchParams.get("access_token")}`,
-      formData,
+      form,
       {
         headers: {
           "Content-Type": "multipart/form-data",
