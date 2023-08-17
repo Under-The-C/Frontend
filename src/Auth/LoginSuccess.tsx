@@ -5,6 +5,14 @@ import queryString from "query-string";
 import axios from "axios";
 import { loginState } from "../Atom/user";
 import axiosInstance from "../API/axios";
+import styled from "styled-components";
+import { Container } from "react-bootstrap";
+import { Main } from "../Pages/Main/Main";
+
+const MainContainer = styled(Container)`
+  display: flex;
+  justify-contents:center;
+`;
 
 export const LoginSuccess = () => {
   const navigate = useNavigate();
@@ -26,19 +34,10 @@ export const LoginSuccess = () => {
   };
 
   useEffect(() => {
-    //const parsed = queryString.parse(window.location.search);
-    //const { access_token: accessToken } = parsed;
-    //console.log(accessToken);
-
-    //if (typeof accessToken === "string") {
-    //  loginUser(accessToken);
-    //} else {
-    //  navigate("/loginPage");
-    //}
     const accessToken = searchParam.get("access_token");
     if(accessToken) loginUser(accessToken as string);
     else navigate("/loginPage");
   }, []);
 
-  return <div>로그인 처리 중...</div>;
+  return <MainContainer>로그인 처리 중...</MainContainer>;
 };
