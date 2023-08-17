@@ -7,6 +7,7 @@ import { imageFileState, signupState } from "../../Atom/signup";
 import axios from "axios";
 import { SERVER } from "../../config";
 import { loginState } from "../../Atom/user";
+import { ImageUpload } from "./ImageUpload";
 
 export const SignUp = () => {
   const setLogin = useSetRecoilState(loginState);
@@ -24,40 +25,12 @@ export const SignUp = () => {
     setSignup({ ...signup, role: param.role });
   }, []);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    const reader: FileReader | null = new FileReader();
-    if (!file) return;
-
-    try {
-      reader.onload = () => {
-        if (reader.result) {
-          setSignup({
-            ...signup,
-            certificate: reader.result as string,
-          });
-        }
-      };
-      reader.readAsDataURL(file);
-    } catch (error) {
-      console.error("Ercertificate load:", error);
-    }
-  };
-
-  const handleChangeImageClick = () => {
-    if (fileInputRef.current) fileInputRef.current.click();
-  };
-
   const handleSearchAddr = {
     clickButton: () => {
       setOpenPostcode(!openPostcode);
     },
 
     selectAddress: (data: any) => {
-      console.log(`
-          주소: ${data.address},
-          우편번호: ${data.zonecode}
-      `);
       setSignup({ ...signup, address: data.address });
       setOpenPostcode(false);
     },
@@ -86,19 +59,24 @@ export const SignUp = () => {
       alert("상세 주소를 입력해주세요");
       return;
     }
-    if (signup.role === "seller" && signup.certificate === "") {
+    if (signup.role === "seller" && imageFile === null) {
       alert("사업자 등록증을 등록해주세요");
       return;
     }
 
-    console.log(signup);
-    formData.append("name", JSON.stringify(signup.name));
-    formData.append("phone", JSON.stringify(signup.phone));
-    formData.append("address", JSON.stringify(signup.address));
-    formData.append("detailAddress", JSON.stringify(signup.detailAddress));
-    formData.append("role", JSON.stringify(signup.role));
-    if (imageFile) formData.append("certificate", imageFile);
-    console.log(formData);
+    //formData.append("name", JSON.stringify(signup.name));
+    //formData.append("phone", JSON.stringify(signup.phone));
+    //formData.append("address", JSON.stringify(signup.address));
+    //formData.append("detailAddress", JSON.stringify(signup.detailAddress));
+    //formData.append("role", JSON.stringify(signup.role));
+    formData.append("name", signup.name);
+    formData.append("phone", signup.phone);
+    formData.append("address", signup.address);
+    formData.append("detailAddress", signup.detailAddress);
+    formData.append("role", signup.role);
+    if (imageFile) {
+      formData.append("certificate", imageFile);
+    }
 
     const res = await axios.post(
       SERVER.SERVER_API +
@@ -194,30 +172,7 @@ export const SignUp = () => {
                   사업자 등록증
                 </label>
                 <div className=" ml-10 flex w-[80%] rounded-md outline-none border-none">
-                  <div className="flex h-[20vh] aspect-square justify-center items-center  bg-gray-200">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      ref={fileInputRef}
-                      onChange={handleImageChange}
-                      style={{ display: "none" }}
-                    />
-                    {signup.certificate ? (
-                      <img
-                        src={signup.certificate}
-                        className="w-full h-full image-contain"
-                        alt="mainImage"
-                        onClick={handleChangeImageClick}
-                      />
-                    ) : (
-                      <img
-                        src={require("../../public/images/camera.png")}
-                        className="w-16 h-16"
-                        alt="camera"
-                        onClick={handleChangeImageClick}
-                      />
-                    )}
-                  </div>
+                  <ImageUpload />
                 </div>
               </div>
             ) : null}

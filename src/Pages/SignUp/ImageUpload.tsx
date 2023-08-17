@@ -12,6 +12,7 @@ export const ImageUpload = () => {
     const file = e.target.files?.[0];
     const reader = new FileReader();
 
+    console.log(file);
     try {
       // 이미지 미리보기
       reader.onload = () => {
@@ -22,9 +23,9 @@ export const ImageUpload = () => {
       if (file) {
         console.log(file);
         reader.readAsDataURL(file);
-        reader.onload = () => {
-          setImageFile(file);
-        };
+        setImageFile(file);
+        //reader.onload = () => {
+        //};
       }
     } catch (error) {
       console.error("Error image load:", error);
@@ -37,7 +38,7 @@ export const ImageUpload = () => {
 
   return (
     <>
-      <span className="font-bold text-xl">대표 이미지</span>
+      {/*<span className="font-bold text-xl">대표 이미지</span>*/}
       <div className="flex h-[20vh] aspect-square bg-gray-200 justify-center items-center">
         <input
           type="file"
@@ -46,9 +47,9 @@ export const ImageUpload = () => {
           onChange={handleImageChange}
           style={{ display: "none" }}
         />
-        {signup.certificate ? (
+        {image ? (
           <img
-            src={signup.certificate}
+            src={image}
             className="w-full h-full image-contain"
             alt="cre_image"
             onClick={handleChangeImageClick}
