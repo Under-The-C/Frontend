@@ -39,7 +39,6 @@ return (
                         value={quantity}
                         onChange={changeValue}
                         />
-                        
                 </Dropdown.Menu>
             </CustomDropdown>
 
