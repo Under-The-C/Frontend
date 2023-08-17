@@ -1,15 +1,15 @@
 import React, { useRef } from "react";
-import { useRecoilState } from "recoil";
-import { signupState } from "../../Atom/signup";
+import { atom, useRecoilState, useSetRecoilState } from "recoil";
+import { formData, signupState } from "../../Atom/signup";
 
 export const ImageUpload = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [signup, setSignup] = useRecoilState(signupState);
+  const setFormData = useSetRecoilState(formData);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    const reader: FileReader | null = new FileReader();
-    if (!file) return;
+    const reader = new FileReader();
 
     try {
       // 이미지 미리보기
@@ -21,8 +21,15 @@ export const ImageUpload = () => {
           }));
         }
       };
+      if (file) {
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          const newFormData = new FormData();
 
-      reader.readAsDataURL(file);
+          newFormData.append("certificate", file);
+          setFormData(newFormData);
+        };
+      }
     } catch (error) {
       console.error("Error image load:", error);
     }

@@ -9,6 +9,11 @@ export const signupState = atom<SignupStateDto>({
     address: "",
     detailAddress: "",
     role: "",
-    certificate: ""
+    certificate: "",
   },
+});
+
+export const formData = atom({
+  key: "formData",
+  default: new FormData(),
 });
