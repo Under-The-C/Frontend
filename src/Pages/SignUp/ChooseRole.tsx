@@ -37,13 +37,13 @@ export const ChooseRole = () => {
             <span className="font-semibold text-[2.5rem] mt-5">판매자</span>
           </div>
           <div
-            id="customer"
+            id="buyer"
             className="flex w-[26vw] h-full p-24 bg-white rounded-2xl flex-col items-center justify-center"
             onClick={handleSignUp}
           >
             <img
               src={require("../../public/images/customerImage.png")}
-              alt="customer"
+              alt="buyer"
               className="h-2/3"
             />
             <span className="font-semibold text-[2.5rem] mt-5">구매자</span>
