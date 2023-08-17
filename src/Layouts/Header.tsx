@@ -18,7 +18,6 @@ const Header = () => {
   const [search, setSearch] = useState("");
   const user = useRecoilValue(userState);
 
-  console.log(loggedIn);
   const handleLogout = async () => {
     setLoggedIn(false);
     const res = await axiosInstance.get("/v1/logout");
