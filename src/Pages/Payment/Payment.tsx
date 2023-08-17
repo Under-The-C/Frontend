@@ -50,7 +50,7 @@ export const Payment = () => {
       <TextTitle>결제하기</TextTitle>
       <MainContainer>
         <Box>
-          <ImageSize src={buy.main_image} alt={buy.name} />
+          <ImageSize src={buy.mainImage} alt={buy.name} />
           {buy.name} 
         </Box>
           <Price>{buy.price}원</Price> 
