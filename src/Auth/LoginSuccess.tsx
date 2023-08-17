@@ -16,7 +16,6 @@ export const LoginSuccess = () => {
       const response = await axiosInstance.post(
         `/v1/login?access_token=${token}`
       );
-      
       if (response.status === 200) {
         setLogin(true);
         navigate("/");
@@ -36,8 +35,9 @@ export const LoginSuccess = () => {
     //} else {
     //  navigate("/loginPage");
     //}
-    loginUser(searchParam.get("access_token") as string);
-
+    const accessToken = searchParam.get("access_token");
+    if(accessToken) loginUser(accessToken as string);
+    else navigate("/loginPage");
   }, []);
 
   return <div>로그인 처리 중...</div>;

@@ -159,7 +159,7 @@ export const Main = () => {
         <Container className="p-5">
           <Row className="p-5">
             <Col>
-            <span style={{fontSize:"1.5rem"}}>과일 대표 게시글</span>
+            <span style={{fontSize:"1.3rem"}}>과일 대표 게시글</span>
               <Link to="/Category/과일">
                 <SmallComponent src={product[0].main_image} alt="react" />
                 <WrapperText>
@@ -173,7 +173,7 @@ export const Main = () => {
               </Link>
             </Col>
             <Col>
-            <span style={{fontSize:"1.5rem"}}>채소 대표 게시글</span>
+            <span style={{fontSize:"1.3rem"}}>채소 대표 게시글</span>
               <Link to="/Category/채소">  
                 <SmallComponent src={product[1].main_image} alt="react" />
                 <WrapperText>
@@ -187,7 +187,7 @@ export const Main = () => {
               </Link>
             </Col>
             <Col>
-            <span style={{fontSize:"1.5rem"}}>쌀, 잡곡, 견과 대표 게시글</span>
+            <span style={{fontSize:"1.3rem"}}>쌀, 잡곡, 견과 대표 게시글</span>
               <Link to="/Category/견과">
                 <SmallComponent src={product[2].main_image} alt="react" />
                 <WrapperText>
