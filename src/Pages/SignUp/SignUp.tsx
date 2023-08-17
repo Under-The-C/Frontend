@@ -64,11 +64,16 @@ export const SignUp = () => {
       return;
     }
 
-    formData.append("name", JSON.stringify(signup.name));
-    formData.append("phone", JSON.stringify(signup.phone));
-    formData.append("address", JSON.stringify(signup.address));
-    formData.append("detailAddress", JSON.stringify(signup.detailAddress));
-    formData.append("role", JSON.stringify(signup.role));
+    //formData.append("name", JSON.stringify(signup.name));
+    //formData.append("phone", JSON.stringify(signup.phone));
+    //formData.append("address", JSON.stringify(signup.address));
+    //formData.append("detailAddress", JSON.stringify(signup.detailAddress));
+    //formData.append("role", JSON.stringify(signup.role));
+    formData.append("name", signup.name);
+    formData.append("phone", signup.phone);
+    formData.append("address", signup.address);
+    formData.append("detailAddress", signup.detailAddress);
+    formData.append("role", signup.role);
     if (imageFile) {
       formData.append("certificate", imageFile);
     }
