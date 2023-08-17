@@ -15,6 +15,7 @@ import { BuyItem } from "../../interface/buy";
 import { SellerLink } from "./sellerLink";
 import { userState } from "../../Atom/user";
 import axiosInstance from "../../API/axios";
+import { countState } from "../../Atom/buy";
 
 const MainImage = styled(Col)`
   margin-left: 10vw;
@@ -112,6 +113,7 @@ export const Customer = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [product, setProduct] = useRecoilState(buyState);
+  const [count,setCount] = useRecoilState(countState);
 
   const fetchProduct = async () => {
     const response = await axiosInstance.get("/v1/sale_product/view");
@@ -135,14 +137,23 @@ export const Customer = () => {
     navigate("/payment");
   };
 
-  const Basket = () => {
-    navigate("/Basket");
+  const Basket = async () => {
+    try {
+      const response = await axiosInstance.post("/v1/shopping/add", { id: product?.id, count });
+
+      if (response.status === 200) {
+        setCount(count);
+        navigate("/Basket");
+      } 
+    } catch (error) {
+      console.error( error);
+    }
   };
 
   const goSeller = () => {
     navigate("/seller-my-page");
   }
-
+  console.log(count);
   return (
     <>
     <Button1Wrapper>

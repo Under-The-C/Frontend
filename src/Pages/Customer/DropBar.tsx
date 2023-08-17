@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from "styled-components";
 import { Button as BootstrapButton, Dropdown, FormControl} from "react-bootstrap";
-
+import { basketState } from '../../Atom/buy';
 
 const CustomDropdown = styled(Dropdown)`
   width: 70%;
@@ -18,10 +19,10 @@ const CustomFormControl = styled(FormControl)`
 `;
 export const DropBar = () => {
 
-const [quantity, setQuantity] = useState(1);
+const [count, setCount] = useState(1);
 const changeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setQuantity(Number(e.target.value));
-  console.log(quantity);            
+  setCount(Number(e.target.value));
+  console.log(count);            
 };
 
 return (
@@ -36,7 +37,7 @@ return (
                         type="number"
                         placeholder="수량을 입력하세요"
                         min="1"
-                        value={quantity}
+                        value={count}
                         onChange={changeValue}
                         />
                 </Dropdown.Menu>

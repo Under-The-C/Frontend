@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { buyState } from "../../Atom/buy";
+import { buyState, countState } from "../../Atom/buy";
 import { useRecoilState,useRecoilValue } from "recoil";
 import { Container,Row,Col } from "react-bootstrap";
 import { BuyerForm } from "./BuyerForm";
+import axiosInstance from "../../API/axios";
+
 const TextTitle = styled.div`
 font-size:3rem;    
 display:flex;
@@ -44,7 +46,9 @@ const MainContainer = styled(Container)`
 
 export const Payment = () => {
   const buy = useRecoilValue(buyState);
+  const [count,setCount] = useRecoilState(countState);
 
+  console.log(count);
   return(
     <>
       <TextTitle>결제하기</TextTitle>

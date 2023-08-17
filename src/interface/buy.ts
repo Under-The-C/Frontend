@@ -37,5 +37,15 @@ export interface BuyItem {
 
 export interface BasketItem {
   id: number;
+  seller_id: number;
+  main_image: string;
+  name: string;
+  price: number;
+  category: string;
+  count: number;
+}
+
+export interface CountItem {
+  id: number;
   count: number;
 }
