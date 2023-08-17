@@ -94,10 +94,11 @@ export const SignUp = () => {
     const res = await axios.post(
       SERVER.SERVER_API +
         `/v1/user/add?access_token=${searchParams.get("access_token")}`,
-      signup,
+      JSON.stringify(signup),
       {
         headers: {
-          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
+          ContentType: "application/json",
         },
       }
     );
