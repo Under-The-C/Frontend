@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { buyState } from "../../Atom/buy";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -9,12 +9,12 @@ import {
   Row,
   FormControl,
 } from "react-bootstrap";
-import { useProduct } from "./api";
 import styled from "styled-components";
 import { DropBar } from "./DropBar";
 import { BuyItem } from "../../interface/buy";
 import { SellerLink } from "./sellerLink";
 import { userState } from "../../Atom/user";
+import axiosInstance from "../../API/axios";
 
 const MainImage = styled(Col)`
   margin-left: 10vw;
@@ -93,13 +93,18 @@ const ImageBox = styled.img`
   margin-top: 5vw;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
-  height: auto;
-  max-width: 100%;
-  object-fit: contain;
+  width:60vw;
+  height:25vw;
+  object-fit: contain(60vw);
   display: block;
 `;
 
+const Wrapper = styled.div`
+  display:flex;
+  justify-contents:center;
+  width:30vw;
+  height:30vw;
+`;
 
 const StyledListItem = styled.li`
   font-size: 1rem;
@@ -107,13 +112,30 @@ const StyledListItem = styled.li`
   line-height: 1.6;
   color: #333;
   margin-bottom: 0.5rem;
-  // 다른 스타일 요소를 원할 경우 여기에 추가하세요.
 `;
+
 export const Customer = () => {
   const navigate = useNavigate();
-  const { data: buyItem, isLoading, isError } = useProduct();
   const buy = useRecoilValue(buyState);
   const user = useRecoilValue(userState);
+  const [product, setProduct] = useState(null);
+
+  const fetchProduct = async () => {
+    const response = await axiosInstance.get("/v1/sale_product/view");
+    return response.data;
+  };
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try{
+        const data = await fetchProduct();
+        setProduct(data);
+      } catch (error){
+        console.log(error);
+      }
+    };
+    fetchData();
+  },[])
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -127,6 +149,7 @@ export const Customer = () => {
   const goSeller = () => {
     navigate("/seller-my-page");
   }
+
   return (
     <>
     <Button1Wrapper>
@@ -139,18 +162,18 @@ export const Customer = () => {
           <Row>
             <Col xs={12} md={6} >
               <MainImage>
-                <img src={buy.main_image} alt={buy.name} />
+                <img src={buy?.mainImage} alt={buy?.name} />
               </MainImage>
             </Col>
             <Col xs={12} md={6}>
               <ProductInfo1>
-                <p >{buy.name}</p>
+                <p >{buy?.name}</p>
               </ProductInfo1>
               <ProductInfo>
-                <p>{buy.price}</p>
+                <p>{buy?.price}</p>
               </ProductInfo>
               <ProductInfo>
-                <p>{buy.description}</p>
+                <p>{buy?.description}</p>
               </ProductInfo>
               <Row>
                 <DropBar />
@@ -172,19 +195,17 @@ export const Customer = () => {
       <SellerLink />
       <TestArea>
         <TextBox>
-          판매기간: {buy.saleStartDate}~{buy.saleEndDate}
+          판매기간: {buy?.saleStartDate}~{buy?.saleEndDate}
         </TextBox>
-       
-        <ImageBox src={buy.detailImage[0]} />
-
+        <ImageBox src={buy?.detailImage[0].imageUrl} />
         <TextBox>
-          <TextCol>{buy.subTitle}</TextCol>
+          <TextCol>{buy?.subTitle}</TextCol>
         </TextBox>
-        <TextCol>{buy.subDescription}</TextCol>
+        <TextCol>{buy?.subDescription}</TextCol>
 
-        <ImageBox src={buy.detailImage[1]} />
+        <ImageBox src={buy?.detailImage[1].imageUrl} />
         <TextCol>추가설명글1</TextCol>
-        <ImageBox src={buy.detailImage[2]} />
+        <ImageBox src={buy?.detailImage[2].imageUrl} />
         <TextCol>추가설명글2</TextCol>
       </TestArea>
     </>

@@ -122,8 +122,13 @@ const WrapperText = styled.div`
   display:flex;
   flex-direction: column;
   
-  
 `;
+
+const WrapperStar = styled.div`
+  display:flex;
+  justify-contens:space-between;
+`;
+
 
 export const Main = () => {
   const [product, setProduct] = useState<productDto[]>(dummydata);
@@ -163,11 +168,14 @@ export const Main = () => {
               <Link to="/Category/과일">
                 <SmallComponent src={product[0].main_image} alt="react" />
                 <WrapperText>
-                <span style={{marginLeft:"1vw", fontSize:"1.5rem"}}>{product[0].name}</span>
-                <span style={{marginLeft:"1.2vw"}}>{product[0].price}원</span>
+                <span style={{fontSize:"1.5rem"}}>{product[0].name}</span>
+                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{product[0].price}원</span>
                 <Wrapper>
                 <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.2vw"}}/>
-                <span>{product[0].rating}</span>
+                <Col>
+                <span style={{marginRight:"0.5vw"}}>{product[0].rating}</span>
+                (<span>{product[0].viewCount}</span>)
+                </Col>         
                 </Wrapper>
                 </WrapperText>
               </Link>
@@ -177,11 +185,14 @@ export const Main = () => {
               <Link to="/Category/채소">  
                 <SmallComponent src={product[1].main_image} alt="react" />
                 <WrapperText>
-                <span style={{marginLeft:"1vw", fontSize:"1.5rem"}}>{product[1].name}</span>
-                <span style={{marginLeft:"1.2vw"}}>{product[1].price}원</span>
+                <span style={{fontSize:"1.5rem"}}>{product[1].name}</span>
+                <span style={{marginLeft:"0.5vw", fontSize:"1rem"}}>{product[1].price}원</span>
                 <Wrapper>
                 <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
-                <span>{product[1].rating}</span>
+                <Col>
+                <span style={{marginRight:"0.5vw"}}>{product[1].rating}</span>
+                (<span>{product[1].viewCount}</span>)
+                </Col>
                 </Wrapper>
                 </WrapperText>
               </Link>
@@ -191,11 +202,14 @@ export const Main = () => {
               <Link to="/Category/견과">
                 <SmallComponent src={product[2].main_image} alt="react" />
                 <WrapperText>
-                <span style={{marginLeft:"1vw", fontSize:"1.5rem"}}>{product[2].name}</span>
-                <span style={{marginLeft:"1.2vw"}}>{product[2].price}원</span>
+                <span style={{fontSize:"1.5rem"}}>{product[2].name}</span>
+                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{product[2].price}원</span>
                 <Wrapper>
                 <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
-                <span>{product[2].rating}</span>
+                <Col>
+                <span style={{marginRight:"0.5vw"}}>{product[2].rating}</span>
+                (<span>{product[2].viewCount}</span>)
+                </Col>
                 </Wrapper>
                 </WrapperText>    
               </Link>
