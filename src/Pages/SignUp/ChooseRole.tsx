@@ -7,12 +7,14 @@ import { signupState } from "../../Atom/signup";
 
 export const ChooseRole = () => {
   const navigate = useNavigate();
-  const setSignup = useSetRecoilState(signupState);
+  const [searchParams] = useSearchParams();
 
   const handleSignUp = (event: any) => {
     const role = event.currentTarget.id;
     console.log("회원가입");
-    navigate(`/signup/${role}`);
+    navigate(
+      `/signup/${role}?access_token=${searchParams.get("access_token")}`
+    );
   };
 
   return (

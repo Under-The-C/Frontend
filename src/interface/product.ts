@@ -1,3 +1,14 @@
+interface ProductKeyword {
+  id: number;
+  products: string[];
+  keyword: string;
+}
+
+interface DetailImage {
+  id: number;
+  imageUrl: string;
+}
+
 export interface productDto {
   id: number;
   seller_id: number;

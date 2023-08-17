@@ -83,6 +83,7 @@ const dummydata: productDto[] = [
     rating: 4.5,
   },
 ];
+
 const MainContainer = styled(Container)`
   padding-bottom: 10vh;
   
@@ -102,7 +103,6 @@ const TopComponent = styled.img`
   max-height: calc(40vh);
   object-fit: contain;
   margin-top: 2vh;
-  
 `;
 
 const SmallComponent = styled.img`
@@ -117,12 +117,14 @@ const SmallComponent = styled.img`
 const Wrapper = styled.div`
   display:flex;
 `;
+
 const WrapperText = styled.div`
   display:flex;
   flex-direction: column;
   
   
 `;
+
 export const Main = () => {
   const [product, setProduct] = useState<productDto[]>(dummydata);
   
@@ -138,7 +140,7 @@ export const Main = () => {
       }
     } catch (error: any) {
       console.log(error);
-      alert("");
+      
     }
   };
   
