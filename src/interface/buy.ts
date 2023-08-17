@@ -44,3 +44,8 @@ export interface BasketItem {
   category: string;
   count: number;
 }
+
+export interface CountItem {
+  id: number;
+  count: number;
+}

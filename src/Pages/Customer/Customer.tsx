@@ -15,6 +15,7 @@ import { BuyItem } from "../../interface/buy";
 import { SellerLink } from "./sellerLink";
 import { userState } from "../../Atom/user";
 import axiosInstance from "../../API/axios";
+import { countState } from "../../Atom/buy";
 
 const MainImage = styled(Col)`
   margin-left: 10vw;
@@ -99,12 +100,6 @@ const ImageBox = styled.img`
   display: block;
 `;
 
-const Wrapper = styled.div`
-  display:flex;
-  justify-contents:center;
-  width:30vw;
-  height:30vw;
-`;
 
 const StyledListItem = styled.li`
   font-size: 1rem;
@@ -116,9 +111,9 @@ const StyledListItem = styled.li`
 
 export const Customer = () => {
   const navigate = useNavigate();
-  const buy = useRecoilValue(buyState);
   const user = useRecoilValue(userState);
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useRecoilState(buyState);
+  const [count,setCount] = useRecoilState(countState);
 
   const fetchProduct = async () => {
     const response = await axiosInstance.get("/v1/sale_product/view");
@@ -142,14 +137,23 @@ export const Customer = () => {
     navigate("/payment");
   };
 
-  const Basket = () => {
-    navigate("/Basket");
+  const Basket = async () => {
+    try {
+      const response = await axiosInstance.post("/v1/shopping/add", { id: product?.id, count });
+
+      if (response.status === 200) {
+        setCount(count);
+        navigate("/Basket");
+      } 
+    } catch (error) {
+      console.error( error);
+    }
   };
 
   const goSeller = () => {
     navigate("/seller-my-page");
   }
-
+  console.log(count);
   return (
     <>
     <Button1Wrapper>
@@ -162,18 +166,18 @@ export const Customer = () => {
           <Row>
             <Col xs={12} md={6} >
               <MainImage>
-                <img src={buy?.mainImage} alt={buy?.name} />
+                <img src={product?.mainImage} alt={product?.name} />
               </MainImage>
             </Col>
             <Col xs={12} md={6}>
               <ProductInfo1>
-                <p >{buy?.name}</p>
+                <p >{product?.name}</p>
               </ProductInfo1>
               <ProductInfo>
-                <p>{buy?.price}</p>
+                <p>{product?.price}</p>
               </ProductInfo>
               <ProductInfo>
-                <p>{buy?.description}</p>
+                <p>{product?.description}</p>
               </ProductInfo>
               <Row>
                 <DropBar />
@@ -195,17 +199,17 @@ export const Customer = () => {
       <SellerLink />
       <TestArea>
         <TextBox>
-          판매기간: {buy?.saleStartDate}~{buy?.saleEndDate}
+          판매기간: {product?.saleStartDate}~{product?.saleEndDate}
         </TextBox>
-        <ImageBox src={buy?.detailImage[0].imageUrl} />
+        <ImageBox src={product?.detailImage[0].imageUrl} />
         <TextBox>
-          <TextCol>{buy?.subTitle}</TextCol>
+          <TextCol>{product?.subTitle}</TextCol>
         </TextBox>
-        <TextCol>{buy?.subDescription}</TextCol>
+        <TextCol>{product?.subDescription}</TextCol>
 
-        <ImageBox src={buy?.detailImage[1].imageUrl} />
+        <ImageBox src={product?.detailImage[1].imageUrl} />
         <TextCol>추가설명글1</TextCol>
-        <ImageBox src={buy?.detailImage[2].imageUrl} />
+        <ImageBox src={product?.detailImage[2].imageUrl} />
         <TextCol>추가설명글2</TextCol>
       </TestArea>
     </>
