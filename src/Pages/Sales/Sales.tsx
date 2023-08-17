@@ -10,6 +10,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { salesState } from "../../Atom/sales";
 import { userState } from "../../Atom/user";
 import { formatDate } from "../../Utils/date";
+import axiosInstance from "../../API/axios";
 
 export const Sales = () => {
   const [sales, setSales] = useRecoilState(salesState);
@@ -23,7 +24,7 @@ export const Sales = () => {
     });
   }, []);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log("submit");
 
@@ -68,7 +69,9 @@ export const Sales = () => {
       return;
     }
     console.log(sales);
-    //submit api call
+    //submit api call /api/v1/sale_product/add
+    const res = await axiosInstance.post(
+      "/v1/sale_product/add");
   };
 
   return (
