@@ -16,7 +16,7 @@ interface DetailImage {
 
 export interface BuyItem {
   id: number;
-  productKeywords: ProductKeyword[];
+  productKeywords: [];
   sellerId: number;
   name: string;
   subTitle: string;
