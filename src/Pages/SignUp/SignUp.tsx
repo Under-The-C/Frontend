@@ -91,11 +91,11 @@ export const SignUp = () => {
 
     console.log(signup);
     const formData = new FormData();
-    formData.append("name", signup.name);
-    formData.append("phone", signup.phone);
-    formData.append("address", signup.address);
-    formData.append("detailAddress", signup.detailAddress);
-    formData.append("role", signup.role);
+    formData.append("name", JSON.stringify(signup.name));
+    formData.append("phone", JSON.stringify(signup.phone));
+    formData.append("address", JSON.stringify(signup.address));
+    formData.append("detailAddress", JSON.stringify(signup.detailAddress));
+    formData.append("role", JSON.stringify(signup.role));
     if (signup.certificate !== undefined)
       formData.append("certificate", signup.certificate);
     console.log(formData);
