@@ -20,9 +20,11 @@ export interface SellerMarketDto {
 }
 
 export interface Buyer {
+  id: number;
   buyerId: number;
-  buyerName: string;
-  buyerEmail: string;
-  buyerAddress: string;
-  buyerPhone: string;
+  productId: number;
+  point: number;
+  description: string;
+  reviewImage: string;
+  createdAt: string;
 }
