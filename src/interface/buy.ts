@@ -14,7 +14,6 @@ export interface BuyItem {
   createdAt: string;
   category: string;
 }
- 
 export interface BasketItem {
   id: number;
   seller_id: number;
