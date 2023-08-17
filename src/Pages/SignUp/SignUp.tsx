@@ -90,11 +90,20 @@ export const SignUp = () => {
     }
 
     console.log(signup);
+    const formData = new FormData();
+    formData.append("name", signup.name);
+    formData.append("phone", signup.phone);
+    formData.append("address", signup.address);
+    formData.append("detailAddress", signup.detailAddress);
+    formData.append("role", signup.role);
+    if (signup.certificate !== undefined)
+      formData.append("certificate", signup.certificate);
+    console.log(formData);
 
     const res = await axios.post(
       SERVER.SERVER_API +
         `/v1/user/add?access_token=${searchParams.get("access_token")}`,
-      signup,
+      formData,
       {
         headers: {
           "Content-Type": "multipart/form-data",
