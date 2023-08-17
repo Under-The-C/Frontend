@@ -91,18 +91,18 @@ export const SignUp = () => {
     console.log(signup);
     const formData = new FormData();
     if (signup.certificate) {
-      formData.append('certificate', signup.certificate);
-    }
-  
-    const blob = new Blob([JSON.stringify(signup)], {
-      type: 'application/json',
-    });
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-    formData.append('info', blob);
+    formData.append('certificate', signup.certificate);
+  }
+
+  const blob = new Blob([JSON.stringify(signup)], {
+    type: 'application/json',
+  });
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+  formData.append('info', blob);
     const res = await axios.post(
       SERVER.SERVER_API +
         `/v1/user/add?access_token=${searchParams.get("access_token")}`,
