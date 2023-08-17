@@ -4,14 +4,14 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import { userState } from "../../Atom/user";
 import { useNavigate } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
-
+import axiosInstance from "../../API/axios";
 export const MypageEdit = () => {
   const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleonClickEditProfile = () => {
+  const handleonClickEditProfile = async () => {
     if (user.address === "") {
       alert("주소를 입력해주세요");
       return;
@@ -25,6 +25,8 @@ export const MypageEdit = () => {
       return;
     }
     //수정 api요청 먼저 하기
+    const response = await axiosInstance.post("/api/v1/user/update");
+    
     //mypage effect때문에 수정해도 반영 안될듯
     navigate(-1);
   };
