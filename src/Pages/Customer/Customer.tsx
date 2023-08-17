@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { DropBar } from "./DropBar";
 import { BuyItem } from "../../interface/buy";
 import { SellerLink } from "./sellerLink";
+import { userState } from "../../Atom/user";
 
 const MainImage = styled(Col)`
   margin-left: 10vw;
@@ -99,10 +100,20 @@ const ImageBox = styled.img`
   display: block;
 `;
 
+
+const StyledListItem = styled.li`
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 0.5rem;
+  // 다른 스타일 요소를 원할 경우 여기에 추가하세요.
+`;
 export const Customer = () => {
   const navigate = useNavigate();
   const { data: buyItem, isLoading, isError } = useProduct();
   const buy = useRecoilValue(buyState);
+  const user = useRecoilValue(userState);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -119,7 +130,9 @@ export const Customer = () => {
   return (
     <>
     <Button1Wrapper>
-    <Button1 onClick={goSeller} className="bg-mainGreen"><span>수정하기</span></Button1>
+    {user.role === "seller" && (  
+    <Button1 onClick={goSeller} className="bg-mainGreen"><span>수정하기</span></Button1> 
+    )}
     </Button1Wrapper>
       <MainContainer>
           <form onSubmit={handleSubmit}>
@@ -161,6 +174,7 @@ export const Customer = () => {
         <TextBox>
           판매기간: {buy.saleStartDate}~{buy.saleEndDate}
         </TextBox>
+       
         <ImageBox src={buy.detailImage[0]} />
 
         <TextBox>
