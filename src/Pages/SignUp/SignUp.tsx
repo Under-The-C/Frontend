@@ -2,12 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { signupState } from "../../Atom/signup";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { imageFileState, signupState } from "../../Atom/signup";
 import axios from "axios";
 import { SERVER } from "../../config";
 import { loginState } from "../../Atom/user";
-import { formData } from "../../Atom/signup";
 
 export const SignUp = () => {
   const setLogin = useSetRecoilState(loginState);
@@ -17,7 +16,8 @@ export const SignUp = () => {
   const [signup, setSignup] = useRecoilState(signupState);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [searchParams] = useSearchParams();
-  const [form, setFormData] = useRecoilState(formData);
+  const imageFile = useRecoilValue(imageFileState);
+  const formData = new FormData();
 
   useEffect(() => {
     if (!param.role) return;
@@ -92,17 +92,18 @@ export const SignUp = () => {
     }
 
     console.log(signup);
-    form.append("name", JSON.stringify(signup.name));
-    form.append("phone", JSON.stringify(signup.phone));
-    form.append("address", JSON.stringify(signup.address));
-    form.append("detailAddress", JSON.stringify(signup.detailAddress));
-    form.append("role", JSON.stringify(signup.role));
-    console.log(form);
+    formData.append("name", JSON.stringify(signup.name));
+    formData.append("phone", JSON.stringify(signup.phone));
+    formData.append("address", JSON.stringify(signup.address));
+    formData.append("detailAddress", JSON.stringify(signup.detailAddress));
+    formData.append("role", JSON.stringify(signup.role));
+    if (imageFile) formData.append("certificate", imageFile);
+    console.log(formData);
 
     const res = await axios.post(
       SERVER.SERVER_API +
         `/v1/user/add?access_token=${searchParams.get("access_token")}`,
-      form,
+      formData,
       {
         headers: {
           "Content-Type": "multipart/form-data",

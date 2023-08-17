@@ -13,7 +13,7 @@ export const signupState = atom<SignupStateDto>({
   },
 });
 
-export const formData = atom({
-  key: "formData",
-  default: new FormData(),
+export const imageFileState = atom<File | null>({
+  key: "imageFileState",
+  default: null,
 });
