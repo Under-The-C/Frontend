@@ -1,9 +1,8 @@
 import { atom, selector } from "recoil";
-import { BuyItem } from "../interface/buy";
+import { BuyItem, CountItem } from "../interface/buy";
 import { Buyer } from "../interface/user";
 import { userState } from "./user";
 import { BasketItem } from "../interface/buy";
-
 
 export const buyState = atom<BuyItem>({
   key: "buyState",
@@ -71,4 +70,12 @@ export const basketState = atom<BasketItem[]>({
   key: "basketState",
   default: [],
 });
+
+export const countState = atom<CountItem>({
+  key: "countState",
+  default: {
+    id: 0,
+    count: 0,
+  },
+})
 
