@@ -1,18 +1,38 @@
+interface ProductKeyword {
+  id: number;
+  product: string;
+  productKeyword: {
+    id: number;
+    products: string[];
+    keyword: string;
+  };
+  keyword: string;
+}
+
+interface DetailImage {
+  id: number;
+  imageUrl: string;
+}
+
 export interface BuyItem {
   id: number;
-  seller_id: number;
-  main_image: string;
+  productKeywords: ProductKeyword[];
+  sellerId: number;
   name: string;
+  subTitle: string;
   price: number;
-  keyword: string[];
-  detailImage: string[];
   description: string;
   subDescription: string;
-  subTitle: string;
+  mainImage: string;
+  detailImage: DetailImage[];
+  keywords: ProductKeyword[];
   saleStartDate: string;
   saleEndDate: string;
-  createdAt: string;
   category: string;
+  viewCount: number;
+  reviewCount: number;
+  averageReviewPoint: number;
+  createdAt: string;
 }
 
 export interface BasketItem {
