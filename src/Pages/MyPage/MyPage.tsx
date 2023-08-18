@@ -17,6 +17,7 @@ export const MyPage = () => {
     const fetchUser = async () => {
       const res = await axiosInstance.get("/v1/user/me");
       setUser(res.data);
+      console.log(res.data);
     };
     fetchUser();
   }, []);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import axiosInstance from "../API/axios";
@@ -9,15 +9,15 @@ export const DeleteSuccess = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(loginState);
 
   const logout = async () => {
-    localStorage.removeItem("recoil-persist");
-    localStorage.clear();
-    const res = await axiosInstance.get("/v1/logout");
-    window.location.reload();
     setLoggedIn(false);
+    await axiosInstance.get("/v1/logout");
+    window.location.reload();
     navigate("/");
   };
 
-  logout();
+  useEffect(() => {
+    logout();
+  }, []);
 
   return null;
 };
