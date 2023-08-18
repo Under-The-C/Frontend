@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { useQuery, useQueryClient } from "react-query";
 import axios from "axios";
-import { productDto } from "../../interface/product";
-import { buyItemState } from "../../Atom/buy";
 import axiosInstance from "../../API/axios";
+import { productDto } from "../../interface/product";
+import { MainItem } from "../../interface/main";
+import { mainItemState,mainItem1State,mainItem2State} from "../../Atom/main";
 
 const dummydata: productDto[] = [
   {
@@ -131,92 +132,151 @@ const WrapperStar = styled.div`
 
 
 export const Main = () => {
-  const [product, setProduct] = useState<productDto[]>(dummydata);
-  
-  const fetchBuyInfo = async () => {
-    try {
-      const response = await axiosInstance.get(
-        "v1/sale_product/view_all"
-      );
-      console.log(response.data);
-      if (response.status === 200) {
-        setProduct(response.data);
-        console.log(response.data);
-      }
-    } catch (error: any) {
-      console.log(error);
-      
-    }
-  };
+  const [category1Products, setCategory1Products] = useRecoilState(mainItemState);
+  const [category2Products, setCategory2Products] = useRecoilState(mainItem1State);
+  const [category3Products, setCategory3Products] = useRecoilState(mainItem2State);
   
   useEffect(() => {
+    const fetchBuyInfo = async (Category:string, sortBy: string) => {
+      try {
+        const response = await axiosInstance.get(`/v1/search_product/category_all`, {
+          params: {
+            Category,
+            sortBy,
+          },
+        });
+        if (response.status === 200) {
+          switch (Category) {
+            case '과일':
+              setCategory1Products(response.data);
+              console.log(response.data);
+              break;
+            case '채소':
+              setCategory2Products(response.data);
+              break;
+            case '잡곡':
+              setCategory3Products(response.data);
+              break;
+            default:
+              break;
+          }
+          console.log(response.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     //fetchBuyInfo();
-    setProduct(dummydata);
+    fetchBuyInfo('과일', '최신순');
+    fetchBuyInfo('채소', '최신순');
+    fetchBuyInfo('잡곡', '최신순');
   }, []);
 
   return (
     <>
-    <MainContainer>
-      <Row className="p-5">
-        <TopComponent src="https://picsum.photos/200" alt="react" />
-      </Row>
-      <CenteredContainer>
-        <Container className="p-5">
-          <Row className="p-5">
-            <Col>
-            <span style={{fontSize:"1.3rem"}}>과일 대표 게시글</span>
-              <Link to="/Category/과일">
-                <SmallComponent src={product[0].main_image} alt="react" />
-                <WrapperText>
-                <span style={{fontSize:"1.5rem"}}>{product[0].name}</span>
-                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{product[0].price}원</span>
-                <Wrapper>
-                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.2vw"}}/>
-                <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[0].rating}</span>
-                (<span>{product[0].viewCount}</span>)
-                </Col>         
-                </Wrapper>
-                </WrapperText>
-              </Link>
-            </Col>
-            <Col>
-            <span style={{fontSize:"1.3rem"}}>채소 대표 게시글</span>
-              <Link to="/Category/채소">  
-                <SmallComponent src={product[1].main_image} alt="react" />
-                <WrapperText>
-                <span style={{fontSize:"1.5rem"}}>{product[1].name}</span>
-                <span style={{marginLeft:"0.5vw", fontSize:"1rem"}}>{product[1].price}원</span>
-                <Wrapper>
-                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
-                <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[1].rating}</span>
-                (<span>{product[1].viewCount}</span>)
-                </Col>
-                </Wrapper>
-                </WrapperText>
-              </Link>
-            </Col>
-            <Col>
-            <span style={{fontSize:"1.3rem"}}>쌀, 잡곡, 견과 대표 게시글</span>
-              <Link to="/Category/견과">
-                <SmallComponent src={product[2].main_image} alt="react" />
-                <WrapperText>
-                <span style={{fontSize:"1.5rem"}}>{product[2].name}</span>
-                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{product[2].price}원</span>
-                <Wrapper>
-                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
-                <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[2].rating}</span>
-                (<span>{product[2].viewCount}</span>)
-                </Col>
-                </Wrapper>
-                </WrapperText>    
-              </Link>
-            </Col>
-          </Row>
-        </Container>
-      </CenteredContainer>
+      <MainContainer>
+        <Row className="p-5">
+          <TopComponent src="https://picsum.photos/200" alt="react" />
+        </Row>
+        <CenteredContainer>
+          <Container className="p-5">
+            <Row className="p-5">
+              <Col>
+                <span style={{fontSize:"1.3rem"}}>과일 대표 게시글</span>
+                <Link to="/Category/과일">
+                  <SmallComponent
+                    src={category1Products[0]?.mainImage || "https://picsum.photos/200"}
+                    alt="react"
+                  />
+                  <WrapperText>
+                    <span style={{fontSize:"1.5rem"}}>
+                      {category1Products[0]?.name}
+                    </span>
+                    <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>
+                      {category1Products[0]?.price}원
+                    </span>
+                    <Wrapper>
+                      <img
+                        src={require("../../public/images/Star.png")}
+                        alt=""
+                        className="w-5 h-5"
+                        style={{marginLeft:"1.2vw"}}
+                      />
+                      <Col>
+                        <span style={{marginRight:"0.5vw"}}>
+                          {category1Products[0]?.averageReviewPoint}
+                        </span>
+                        (<span>{category1Products[0]?.viewCount}</span>)
+                      </Col>
+                    </Wrapper>
+                  </WrapperText>
+                </Link>
+              </Col>
+              <Col>
+                <span style={{fontSize:"1.3rem"}}>과일 대표 게시글</span>
+                <Link to="/Category/과일">
+                  <SmallComponent
+                    src={category2Products[0]?.mainImage || "https://picsum.photos/200"}
+                    alt="react"
+                  />
+                  <WrapperText>
+                    <span style={{fontSize:"1.5rem"}}>
+                      {category2Products[0]?.name}
+                    </span>
+                    <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>
+                      {category2Products[0]?.price}원
+                    </span>
+                    <Wrapper>
+                      <img
+                        src={require("../../public/images/Star.png")}
+                        alt=""
+                        className="w-5 h-5"
+                        style={{marginLeft:"1.2vw"}}
+                      />
+                      <Col>
+                        <span style={{marginRight:"0.5vw"}}>
+                          {category2Products[0]?.averageReviewPoint}
+                        </span>
+                        (<span>{category2Products[0]?.viewCount}</span>)
+                      </Col>
+                    </Wrapper>
+                  </WrapperText>
+                </Link>
+              </Col>
+              <Col>
+                <span style={{fontSize:"1.3rem"}}>과일 대표 게시글</span>
+                <Link to="/Category/과일">
+                  <SmallComponent
+                    src={category3Products[0]?.mainImage || "https://picsum.photos/200"}
+                    alt="react"
+                  />
+                  <WrapperText>
+                    <span style={{fontSize:"1.5rem"}}>
+                      {category3Products[0]?.name}
+                    </span>
+                    <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>
+                      {category3Products[0]?.price}원
+                    </span>
+                    <Wrapper>
+                      <img
+                        src={require("../../public/images/Star.png")}
+                        alt=""
+                        className="w-5 h-5"
+                        style={{marginLeft:"1.2vw"}}
+                      />
+                      <Col>
+                        <span style={{marginRight:"0.5vw"}}>
+                          {category3Products[0]?.averageReviewPoint}
+                        </span>
+                        (<span>{category3Products[0]?.viewCount}</span>)
+                      </Col>
+                    </Wrapper>
+                  </WrapperText>
+                </Link>
+              </Col>
+            </Row>
+          </Container>
+        </CenteredContainer>
       </MainContainer>
     </>
   );
