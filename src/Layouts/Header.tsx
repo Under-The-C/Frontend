@@ -21,10 +21,11 @@ const Header = () => {
   useEffect(() => {
     if (loggedIn) {
       const res = axiosInstance.get("/user/me");
+      console.log("header");
       console.log(res);
       //setUser(res.data as UserDto);
     }
-  }, []);
+  }, [loggedIn]);
 
   const handleLogout = async () => {
     setLoggedIn(false);
