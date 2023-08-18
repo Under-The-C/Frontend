@@ -15,9 +15,8 @@ export const DeleteSuccess = () => {
     window.location.reload();
   };
 
-  useEffect(() => {
-    logout();
-  }, []);
+  logout();
+  console.log("회원탈퇴..");
 
   return null;
 };
