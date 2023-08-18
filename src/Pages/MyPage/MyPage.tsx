@@ -21,7 +21,7 @@ export const MyPage = () => {
       setUser(res.data);
       console.log(res.data);
       const encodedImageFileName = encodeURIComponent(res.data.profile);
-      setImg(`images/${encodedImageFileName}`);
+      setImg(SERVER.SERVER + `images/${encodedImageFileName}`);
     };
     fetchUser();
   }, []);
