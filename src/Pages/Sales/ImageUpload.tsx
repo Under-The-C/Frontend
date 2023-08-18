@@ -20,7 +20,7 @@ export const ImageUpload = () => {
         if (reader.result) {
           setSales((prevSales) => ({
             ...prevSales,
-            main_image: reader.result as string,
+            mainImage: reader.result as string,
           }));
         }
       };
