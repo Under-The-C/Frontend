@@ -34,7 +34,7 @@ const Header = () => {
     localStorage.removeItem("recoil-persist");
     const res = await axiosInstance.get("/v1/logout");
     window.location.reload();
-    navigate("/loginPage");
+    navigate("/");
   };
 
   const handleOnChangeSearch = (e: any) => {

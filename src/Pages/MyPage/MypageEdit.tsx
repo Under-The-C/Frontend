@@ -29,7 +29,7 @@ export const MypageEdit = () => {
     formData.append("detailAddress", user.detailAddress);
     if (user.certificate) formData.append("certificate", user.certificate);
 
-    const response = await axiosInstance.post("/v1/user/update", formData);
+    const response = await axiosInstance.patch("/v1/user/update", formData);
 
     navigate(-1);
   };
