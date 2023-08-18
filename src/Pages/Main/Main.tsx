@@ -9,7 +9,7 @@ import { productDto } from "../../interface/product";
 import { buyItemState, buyState } from "../../Atom/buy";
 import axiosInstance from "../../API/axios";
 import { BuyItem } from "../../interface/buy";
-import {buyItemState } from "../../Atom/buy";
+
 const dummydata: productDto[] = [
   {
     id: 1,
@@ -132,16 +132,33 @@ const WrapperStar = styled.div`
 
 
 export const Main = () => {
-  const [product, setProduct] = useRecoilState<BuyItem[]>(buyItemState);
-  
+  const [category1Products, setCategory1Products] = useState<Array<BuyItem>>([]);
+  const [category2Products, setCategory2Products] = useState<Array<BuyItem>>([]);
+  const [category3Products, setCategory3Products] = useState<Array<BuyItem>>([]);
+
   useEffect(() => {
-    const fetchBuyInfo = async () => {
+    const fetchBuyInfo = async (category:string, sortBy: string) => {
       try {
-        const response = await axiosInstance.get(
-          "/v1/sale_product/view"
-        );
+        const response = await axiosInstance.get(`/v1/sale_product/caterory_all`, {
+          params: {
+            category,
+            sortBy,
+          },
+        });
         if (response.status === 200) {
-          setProduct(response.data);
+          switch (category) {
+            case '카테고리1':
+              setCategory1Products(response.data);
+              break;
+            case '카테고리2':
+              setCategory2Products(response.data);
+              break;
+            case '카테고리3':
+              setCategory3Products(response.data);
+              break;
+            default:
+              break;
+          }
           console.log(response.data);
         }
       } catch (err) {
@@ -149,7 +166,9 @@ export const Main = () => {
       }
     };
     //fetchBuyInfo();
-    fetchBuyInfo();
+    fetchBuyInfo('카테고리1', '조회순');
+    fetchBuyInfo('카테고리2', '조회순');
+    fetchBuyInfo('카테고리3', '조회순');
   }, []);
 
   return (
@@ -164,15 +183,15 @@ export const Main = () => {
             <Col>
             <span style={{fontSize:"1.3rem"}}>과일 대표 게시글</span>
               <Link to="/Category/과일">
-                <SmallComponent src={product[0].mainImage} alt="react" />
+                <SmallComponent src={category1Products[0].mainImage} alt="react" />
                 <WrapperText>
-                <span style={{fontSize:"1.5rem"}}>{product[0].name}</span>
-                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{product[0].price}원</span>
+                <span style={{fontSize:"1.5rem"}}>{category1Products[0].name}</span>
+                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{category1Products[0].price}원</span>
                 <Wrapper>
                 <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.2vw"}}/>
                 <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[0].averageReviewPoint}</span>
-                (<span>{product[0].viewCount}</span>)
+                <span style={{marginRight:"0.5vw"}}>{category1Products[0].averageReviewPoint}</span>
+                (<span>{category1Products[0].viewCount}</span>)
                 </Col>         
                 </Wrapper>
                 </WrapperText>
@@ -180,36 +199,36 @@ export const Main = () => {
             </Col>
             <Col>
             <span style={{fontSize:"1.3rem"}}>채소 대표 게시글</span>
-              <Link to="/Category/채소">  
-                <SmallComponent src={product[1].main_image} alt="react" />
+              <Link to="/Category/과일">
+                <SmallComponent src={category2Products[0].mainImage} alt="react" />
                 <WrapperText>
-                <span style={{fontSize:"1.5rem"}}>{product[1].name}</span>
-                <span style={{marginLeft:"0.5vw", fontSize:"1rem"}}>{product[1].price}원</span>
+                <span style={{fontSize:"1.5rem"}}>{category2Products[0].name}</span>
+                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{category2Products[0].price}원</span>
                 <Wrapper>
-                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
+                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.2vw"}}/>
                 <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[1].averageReviewPoint}</span>
-                (<span>{product[1].viewCount}</span>)
-                </Col>
+                <span style={{marginRight:"0.5vw"}}>{category2Products[0].averageReviewPoint}</span>
+                (<span>{category2Products[0].viewCount}</span>)
+                </Col>         
                 </Wrapper>
                 </WrapperText>
               </Link>
             </Col>
             <Col>
-            <span style={{fontSize:"1.3rem"}}>쌀, 잡곡, 견과 대표 게시글</span>
-              <Link to="/Category/견과">
-                <SmallComponent src={product[2].main_image} alt="react" />
+            <span style={{fontSize:"1.3rem"}}>쌀,견과,곡물 대표 게시글</span>
+              <Link to="/Category/과일">
+                <SmallComponent src={category3Products[0].mainImage} alt="react" />
                 <WrapperText>
-                <span style={{fontSize:"1.5rem"}}>{product[2].name}</span>
-                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{product[2].price}원</span>
+                <span style={{fontSize:"1.5rem"}}>{category3Products[0].name}</span>
+                <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{category3Products[0].price}원</span>
                 <Wrapper>
-                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
+                <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.2vw"}}/>
                 <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[2].averageReviewPoint}</span>
-                (<span>{product[2].viewCount}</span>)
-                </Col>
+                <span style={{marginRight:"0.5vw"}}>{category3Products[0].averageReviewPoint}</span>
+                (<span>{category3Products[0].viewCount}</span>)
+                </Col>         
                 </Wrapper>
-                </WrapperText>    
+                </WrapperText>
               </Link>
             </Col>
           </Row>
