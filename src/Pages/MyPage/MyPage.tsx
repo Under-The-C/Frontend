@@ -66,7 +66,7 @@ export const MyPage = () => {
                 마켓 소개
               </label>
               <span className="items-center ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3">
-                {user.marketInfo}
+                {`${user.name}의 마켓입니다.`}
               </span>
             </div>
           )}

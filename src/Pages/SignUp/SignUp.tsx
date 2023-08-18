@@ -15,7 +15,6 @@ export const SignUp = () => {
   const param = useParams();
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const [signup, setSignup] = useRecoilState(signupState);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [searchParams] = useSearchParams();
   const imageFile = useRecoilValue(imageFileState);
   const formData = new FormData();
@@ -64,11 +63,6 @@ export const SignUp = () => {
       return;
     }
 
-    //formData.append("name", JSON.stringify(signup.name));
-    //formData.append("phone", JSON.stringify(signup.phone));
-    //formData.append("address", JSON.stringify(signup.address));
-    //formData.append("detailAddress", JSON.stringify(signup.detailAddress));
-    //formData.append("role", JSON.stringify(signup.role));
     formData.append("name", signup.name);
     formData.append("phone", signup.phone);
     formData.append("address", signup.address);

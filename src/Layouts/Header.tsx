@@ -1,22 +1,31 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { Button } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { NavDropdown } from "react-bootstrap";
 import { loginState, userState } from "../Atom/user";
 import Form from "react-bootstrap/Form";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SERVER } from "../config";
-import axios from "axios";
 import axiosInstance from "../API/axios";
+import { UserDto } from "../interface/user";
 
 const Header = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useRecoilState(loginState);
   const [search, setSearch] = useState("");
-  const user = useRecoilValue(userState);
+  const [user, setUser] = useRecoilState(userState);
+
+  useEffect(() => {
+    if (loggedIn) {
+      const res = axiosInstance.get("/v1/user/me");
+      console.log("header");
+      console.log(res);
+      //setUser(res.data as UserDto);
+    }
+  }, [loggedIn]);
 
   const handleLogout = async () => {
     setLoggedIn(false);
