@@ -141,6 +141,7 @@ export const SignUp = () => {
                   </label>
                   <input
                     type="text"
+                    name="address"
                     value={signup.address}
                     className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3 "
                     disabled={true}
@@ -154,6 +155,7 @@ export const SignUp = () => {
                 <input
                   name="detailAddress"
                   type="text"
+                  value={signup.detailAddress}
                   className="ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
                   onChange={handleInput}
                 />

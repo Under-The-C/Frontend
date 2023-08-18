@@ -11,12 +11,14 @@ export const DeleteSuccess = () => {
   const logout = async () => {
     setLoggedIn(false);
     navigate("/");
-    await axiosInstance.get("/v1/logout");
+    console.log(await axiosInstance.get("/v1/logout"));
     window.location.reload();
   };
 
-  logout();
-  console.log("회원탈퇴..");
+  useEffect(() => {
+    logout();
+    console.log("회원탈퇴..");
+  }, []);
 
-  return null;
+  return <div>회원탈퇴</div>;
 };
