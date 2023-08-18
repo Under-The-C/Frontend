@@ -7,11 +7,12 @@ import {
   FormControl,
 } from "react-bootstrap";
 import { useRecoilState, useResetRecoilState } from "recoil";
-import {userState} from "../../Atom/user";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { styled } from "styled-components";
-
+import axiosInstance from "../../API/axios";
+import { userState } from "../../Atom/user";
+import { buyerState } from "../../Atom/buy";
 const CustomInfo = {
   id: 7,
   name: "손흥민",
@@ -79,6 +80,7 @@ export const CusMyPage = () => {
   const [reviewImages, setReviewImages] = useState([]);
   const [asyncErr, setAsyncErr] = useState(false);
   const [user,setUser] = useRecoilState(userState);
+  const [buyer,setBuyer] = useRecoilState(buyerState);
   const navigate = useNavigate();
   const onClick = () => {
     navigate("/mypage-edit");
@@ -87,9 +89,9 @@ export const CusMyPage = () => {
   useEffect(() => {
     const fetchReviewImages = async () => {
       try {
-        const productId = '여기에_상품_ID를_삽입하세요';
-        const response = await axios.get(
-          `/api/v1/review/view_by_product/${productId}`
+        
+        const response = await axiosInstance.get(
+          `/v1/review/view_by_buyer/${buyer.buyerId}$`
         );
         const fetchedReviewImages = response.data.map((review:any) => review.reviewImage );
         setReviewImages(fetchedReviewImages);
@@ -102,7 +104,15 @@ export const CusMyPage = () => {
   }, []);
 
   useEffect(() => {
-    setUser(CustomInfo);
+    const fetchUserData = async () => {
+      try {
+        const res = await axiosInstance.get(`/v1/user/${user.id}`);
+        setBuyer(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchUserData();
   },[]);
 
   return (
@@ -111,7 +121,7 @@ export const CusMyPage = () => {
     <div>
     <Wrapper className="mt-5">
     <ProfileImage
-      src={CustomInfo.profile}
+      src={user.profile}
       alt="profile"
       className="mr-5"
     />
