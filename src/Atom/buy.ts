@@ -41,11 +41,13 @@ export const formDataState = atom<FormData | null>({
 export const buyerState = atom<Buyer>({
   key: "buyerState",
   default: {
+    id: 0,
     buyerId: 0,
-    buyerName: "",
-    buyerEmail: "",
-    buyerAddress: "",
-    buyerPhone: "",
+    productId: 0,
+    point: 0,
+    description: "",
+    reviewImage: "",
+    createdAt: "",
   },
 });
 

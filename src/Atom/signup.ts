@@ -9,7 +9,7 @@ export const signupState = atom<SignupStateDto>({
     address: "",
     detailAddress: "",
     role: "",
-    certificate: "",
+    certificate: ""
   },
 });
 

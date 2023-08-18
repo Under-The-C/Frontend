@@ -15,14 +15,7 @@ import { buyeruserState } from "../../Atom/buy";
 import { salesState } from "../../Atom/sales";
 import {SERVER} from "../../config";
 import axios from "axios";
-
-const buyerPerson: Buyer = {
-  buyerId: 1,
-  buyerName: "김철수",
-  buyerEmail: "kim@chul.seo",
-  buyerAddress: "경기도 부천시 가톨릭길-41 다솔동 1001호",
-  buyerPhone: "01044444444",
-};
+import { userState } from "../../Atom/user";
 
 const Text = styled.span`
     width:5vw;
@@ -61,7 +54,7 @@ const Button = styled(BootstrapButton)`
 export const BuyerForm = () => {
   const [buyerUser, setBuyerUser] = useRecoilState(buyeruserState);
   const product = useRecoilValue(salesState);
-  const [buyer, setBuyer] = useRecoilState(buyerState);
+  const [buyer, setBuyer] = useRecoilState(userState);
   const [pay, setPay] = useState("");
 
   const onClick = async () => {
@@ -78,15 +71,15 @@ export const BuyerForm = () => {
   useEffect(() => {
     setBuyerUser({
       ...buyerUser,
-      buyerValue: buyerPerson,
+      buyerValue: buyer,
     });
   }, []);
 
   const inputChange = (e: any) => {
     const { name, value } = e.target;
-    if (name === "buyerName") setBuyer({ ...buyer, buyerName: value });
-    else if (name === "buyerPhone") setBuyer({ ...buyer, buyerPhone: value });
-    else if (name === "buyerAddress") setBuyer({ ...buyer, buyerAddress: value });
+    if (name === "buyerName") setBuyer({ ...buyer, name: value });
+    else if (name === "buyerPhone") setBuyer({ ...buyer, phone: value });
+    else if (name === "buyerAddress") setBuyer({ ...buyer, address: value });
   };
 
   const formPhoneNumber = (phone: string | undefined) => {
@@ -107,9 +100,9 @@ export const BuyerForm = () => {
         <Text>이름</Text>        
         <input
           name="buyerName"
-          value={buyerUser.buyerValue?.buyerName}
+          value={buyerUser.buyer?.name}
           type="text"
-          placeholder={buyerUser.buyerValue?.buyerName}
+          placeholder={buyerUser.buyer?.name}
           onChange={inputChange}
           maxLength={30}
           className="w-[55vw] h-[3rem] pl-2 border-none outline-none rounded-lg bg-slate-100"
@@ -119,9 +112,9 @@ export const BuyerForm = () => {
         <Text>연락처</Text>
         <input
           name="buyerPhone"
-          value={formPhoneNumber(buyerUser.buyerValue?.buyerPhone)}
+          value={formPhoneNumber(buyerUser.buyer?.phone)}
           type="tel"
-          placeholder={formPhoneNumber(buyerUser.buyerValue?.buyerPhone)}
+          placeholder={formPhoneNumber(buyerUser.buyer?.phone)}
           onChange={inputChange}
           maxLength={11}
           className="w-[55vw] h-[3rem] pl-2 border-none outline-none rounded-lg bg-slate-100"    />
@@ -130,9 +123,9 @@ export const BuyerForm = () => {
         <Text>주소</Text>
         <input
           name="buyerAddress"
-          value={buyerUser.buyerValue?.buyerAddress}
+          value={buyerUser.buyer?.address}
           type="text"
-          placeholder={buyerUser.buyerValue?.buyerAddress}
+          placeholder={buyerUser.buyer?.address}
           onChange={inputChange}
           className="w-[55vw] h-[3rem] pl-2 border-none outline-none rounded-lg bg-slate-100"
         />
