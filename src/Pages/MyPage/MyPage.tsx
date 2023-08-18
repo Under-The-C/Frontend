@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../Atom/user";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../API/axios";
+import { SERVER } from "../../config";
 
 export const MyPage = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -31,7 +32,7 @@ export const MyPage = () => {
         <div className="flex justify-between flex-col w-[70vw] mt-2 p-10 bg-[#9EEBA5] rounded-3xl">
           <div className="flex w-full h-[15vh] justify-center items-center">
             <img
-              src={user.profile}
+              src={SERVER.SERVER + "images/" + user.profile}
               alt="profile"
               className="h-[13vh] aspect-square rounded-full"
             />
