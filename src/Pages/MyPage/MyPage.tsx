@@ -1,32 +1,25 @@
 import React, { useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userState } from "../../Atom/user";
 import { useNavigate } from "react-router-dom";
-
-const dummyUser = {
-  id: 1,
-  name: "김민수",
-  email: "abc@gmail.com",
-  profile: "https://picsum.photos/200",
-  address: "서울시 강남구",
-  detailAddress: "역삼동",
-  phone: "010-1234-5678",
-  role: "seller",
-  marketInfo: "민수의 과일가게",
-};
+import axiosInstance from "../../API/axios";
 
 export const MyPage = () => {
   const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setUser(dummyUser);
-  }, []);
-
   const handleonClickEditProfile = () => {
     navigate("/mypage-edit");
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axiosInstance.get("/v1/user/me");
+      setUser(res.data);
+    };
+    fetchUser();
+  }, []);
 
   return (
     <Container>
