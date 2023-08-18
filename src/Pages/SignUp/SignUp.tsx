@@ -83,7 +83,6 @@ export const SignUp = () => {
       }
     );
     console.log(res.data);
-    setLogin(true);
     naviagate("/");
   };
 

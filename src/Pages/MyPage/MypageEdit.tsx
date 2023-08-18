@@ -29,7 +29,7 @@ export const MypageEdit = () => {
     formData.append("detailAddress", user.detailAddress);
     if (user.certificate) formData.append("certificate", user.certificate);
 
-    const response = await axiosInstance.post("/api/v1/user/update");
+    const response = await axiosInstance.post("/v1/user/update", formData);
 
     navigate(-1);
   };
@@ -37,8 +37,6 @@ export const MypageEdit = () => {
   const handelClickSecession = () => {
     window.location.href =
       "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=be84e5c954c05f4d77886292167f2621&redirect_uri=https://115.85.181.92/login/oauth2/kakao-unlink";
-
-    navigate("/");
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
