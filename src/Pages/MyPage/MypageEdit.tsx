@@ -24,18 +24,24 @@ export const MypageEdit = () => {
       alert("닉네임을 입력해주세요");
       return;
     }
+    const form = new FormData();
+
+    form.append("address", user.address);
+    form.append("detailAddress", user.detailAddress);
+    form.append("email", user.email);
+    //form.append("")
+
     //수정 api요청 먼저 하기
     const response = await axiosInstance.post("/api/v1/user/update");
-    
+
     //mypage effect때문에 수정해도 반영 안될듯
     navigate(-1);
   };
 
   const handelClickSecession = () => {
-
     window.location.href =
       "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=be84e5c954c05f4d77886292167f2621&redirect_uri=https://115.85.181.92/login/oauth2/kakao-unlink";
-    
+
     navigate("/");
   };
 
@@ -87,12 +93,12 @@ export const MypageEdit = () => {
         </div>
         <div className="flex justify-between flex-col w-[70vw] mt-2 p-10 bg-[#9EEBA5] rounded-3xl">
           <Button
-              variant="primary"
-              className="ml-10 h-10 rounded-md outline-none border-none bg-mint text-black w-32"
-              onClick={handelClickSecession}
-            >
-              회원탈퇴
-            </Button>
+            variant="primary"
+            className="ml-10 h-10 rounded-md outline-none border-none bg-mint text-black w-32"
+            onClick={handelClickSecession}
+          >
+            회원탈퇴
+          </Button>
           <div className="flex w-full h-[18vh] justify-center items-center flex-col">
             <input
               type="file"
@@ -149,7 +155,7 @@ export const MypageEdit = () => {
               </label>
               <input
                 name="marketInfo"
-                value={user.marketInfo}
+                value={`${user.name} + "의 마켓입니다.`}
                 onChange={handleInput}
                 type="text"
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"

@@ -12,7 +12,6 @@ export const ImageUpload = () => {
     const file = e.target.files?.[0];
     const reader = new FileReader();
 
-    console.log(file);
     try {
       // 이미지 미리보기
       reader.onload = () => {
@@ -21,11 +20,8 @@ export const ImageUpload = () => {
         }
       };
       if (file) {
-        console.log(file);
         reader.readAsDataURL(file);
         setImageFile(file);
-        //reader.onload = () => {
-        //};
       }
     } catch (error) {
       console.error("Error image load:", error);

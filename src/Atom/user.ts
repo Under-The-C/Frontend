@@ -1,8 +1,8 @@
-import { atom, selector} from "recoil";
+import { atom, selector } from "recoil";
 import { SellerMarketDto, UserDto } from "../interface/user";
 import { sellerMarketState, salesItemSummaryListState } from "./sales";
 import { salesItemSummaryDto } from "../interface/sales";
-import { recoilPersist } from 'recoil-persist';
+import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist();
 
@@ -18,12 +18,11 @@ export const userState = atom<UserDto>({
     id: 0,
     name: "",
     email: "",
-    role: "", // "admin" | "customer" | "seller" ? 모름
+    role: "",
     profile: "",
     address: "",
     detailAddress: "",
     phone: "",
-    marketInfo: "",
   },
 });
 
