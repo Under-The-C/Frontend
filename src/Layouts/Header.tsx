@@ -20,7 +20,7 @@ const Header = () => {
 
   useEffect(() => {
     if (loggedIn) {
-      const res = axiosInstance.get("/user/me");
+      const res = axiosInstance.get("/v1/user/me");
       console.log("header");
       console.log(res);
       //setUser(res.data as UserDto);
