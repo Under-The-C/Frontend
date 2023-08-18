@@ -31,7 +31,8 @@ const Header = () => {
 
   const handleLogout = async () => {
     setLoggedIn(false);
-    localStorage.removeItem("recoil-persist");
+    //localStorage.removeItem("recoil-persist");
+    //localStorage.clear();
     const res = await axiosInstance.get("/v1/logout");
     window.location.reload();
     navigate("/");
