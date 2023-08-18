@@ -9,17 +9,20 @@ import { DescriptionSubtitleInput } from "./DescriptionSubtitleInput";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { salesState } from "../../Atom/sales";
 import { userState } from "../../Atom/user";
+import {imageFileState} from "../../Atom/signup"
 import { formatDate } from "../../Utils/date";
 import axiosInstance from "../../API/axios";
 
 export const Sales = () => {
   const [sales, setSales] = useRecoilState(salesState);
+  const imageFile = useRecoilValue(imageFileState);
   const user = useRecoilValue(userState);
+  const formData = new FormData();
 
   useEffect(() => {
     setSales({
       ...sales,
-      seller_id: user.id,
+      userId: sales.userId,
       createdAt: formatDate(new Date()),
     });
   }, []);
@@ -28,7 +31,7 @@ export const Sales = () => {
     e.preventDefault();
     console.log("submit");
 
-    if (!sales.main_image) {
+    if (!sales.mainImage) {
       alert("메인이미지를 등록해주세요.");
       return;
     }
@@ -40,11 +43,11 @@ export const Sales = () => {
       alert("상품 가격을 입력해주세요.");
       return;
     }
-    if (!sales.keyword) {
+    if (!sales.keywords) {
       alert("키워드를 입력해주세요.");
       return;
     }
-    if (!sales.detailImage) {
+    if (!sales.detailImages) {
       alert("상세 이미지를 등록해주세요.");
       return;
     }
@@ -68,10 +71,29 @@ export const Sales = () => {
       alert("판매 종료 날짜를 입력해주세요.");
       return;
     }
+    formData.append("name", sales.name);
+    formData.append("price", sales.price.toString());
+    formData.append("keywords", JSON.stringify(sales.keywords));
+    formData.append("subDescription", sales.subDescription);
+    formData.append("subTitle", sales.subTitle);
+    formData.append("saleStartDate", sales.saleStartDate);
+    formData.append("saleEndDate",sales.saleEndDate);
+    if (imageFile) {
+      formData.append("detailImages", imageFile);
+      formData.append("mainImage", imageFile);
+
+    }
+
     console.log(sales);
     //submit api call /api/v1/sale_product/add
     const res = await axiosInstance.post(
-      "/v1/sale_product/add");
+      "/v1/sale_product/add",formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
   };
 
   return (

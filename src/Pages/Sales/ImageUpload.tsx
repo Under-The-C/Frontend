@@ -1,10 +1,13 @@
-import React, { useRef } from "react";
-import { useRecoilState } from "recoil";
+import React, { useRef, useState } from "react";
+import { useRecoilState,useSetRecoilState } from "recoil";
 import { salesState } from "../../Atom/sales";
+import { imageFileState } from "../../Atom/signup";
 
 export const ImageUpload = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [sales, setSales] = useRecoilState(salesState);
+  const setImageFile = useSetRecoilState(imageFileState);
+  const [image, setImage] = useState("");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -21,8 +24,10 @@ export const ImageUpload = () => {
           }));
         }
       };
-
-      reader.readAsDataURL(file);
+      if (file) {
+        reader.readAsDataURL(file);
+        setImageFile(file);
+      }
     } catch (error) {
       console.error("Error image load:", error);
     }
@@ -43,9 +48,9 @@ export const ImageUpload = () => {
           onChange={handleImageChange}
           style={{ display: "none" }}
         />
-        {sales.main_image ? (
+        {sales.mainImage ? (
           <img
-            src={sales.main_image}
+            src={sales.mainImage}
             className="w-full h-full image-contain"
             alt="main_image"
             onClick={handleChangeImageClick}

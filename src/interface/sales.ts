@@ -1,17 +1,21 @@
 export interface SalesDto {
-  seller_id: number;
-  main_image: string;
+  id: number;
+  userId: number;
   name: string;
+  subTitle: string;
   price: number;
-  keyword: string[];
-  detailImage: string[];
   description: string;
   subDescription: string;
-  subTitle: string;
+  mainImage: string;
+  detailImages: string[];
+  keywords: string[];
   saleStartDate: string;
   saleEndDate: string;
-  createdAt: string;
   category: string;
+  viewCount: number;
+  reviewCount: number;
+  averageReviewPoint: number;
+  createdAt: string;
 }
 
 export interface salesItemSummaryDto {
