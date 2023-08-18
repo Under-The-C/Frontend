@@ -20,15 +20,18 @@ const Header = () => {
 
   useEffect(() => {
     if (loggedIn) {
-      const res = axiosInstance.get("/v1/user/me");
-      console.log("header");
-      console.log(res);
-      //setUser(res.data as UserDto);
+      const fetchUserMe = async () => {
+        const res = await axiosInstance.get("/v1/user/me");
+        setUser(res.data);
+      };
+
+      fetchUserMe();
     }
   }, [loggedIn]);
 
   const handleLogout = async () => {
     setLoggedIn(false);
+    localStorage.removeItem("recoil-persist");
     const res = await axiosInstance.get("/v1/logout");
     window.location.reload();
     navigate("/loginPage");

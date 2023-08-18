@@ -10,6 +10,8 @@ export const MypageEdit = () => {
   const navigate = useNavigate();
   const [openPostcode, setOpenPostcode] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [image, setImage] = useState("");
+  const formData = new FormData();
 
   const handleonClickEditProfile = async () => {
     if (user.address === "") {
@@ -20,21 +22,15 @@ export const MypageEdit = () => {
       alert("상세 주소를 입력해주세요");
       return;
     }
-    if (user.email === "") {
-      alert("닉네임을 입력해주세요");
-      return;
-    }
-    const form = new FormData();
 
-    form.append("address", user.address);
-    form.append("detailAddress", user.detailAddress);
-    form.append("email", user.email);
-    //form.append("")
+    formData.append("name", user.name);
+    formData.append("phone", user.phone);
+    formData.append("address", user.address);
+    formData.append("detailAddress", user.detailAddress);
+    if (user.certificate) formData.append("certificate", user.certificate);
 
-    //수정 api요청 먼저 하기
     const response = await axiosInstance.post("/api/v1/user/update");
 
-    //mypage effect때문에 수정해도 반영 안될듯
     navigate(-1);
   };
 
@@ -47,19 +43,19 @@ export const MypageEdit = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    const reader: FileReader | null = new FileReader();
-    if (!file) return;
+    const reader = new FileReader();
 
     try {
+      // 이미지 미리보기
       reader.onload = () => {
         if (reader.result) {
-          setUser({
-            ...user,
-            profile: reader.result as string,
-          });
+          setImage(reader.result as string);
         }
       };
-      reader.readAsDataURL(file);
+      if (file) {
+        reader.readAsDataURL(file);
+        formData.append("profile", file);
+      }
     } catch (error) {
       console.error("Error image load:", error);
     }
@@ -108,7 +104,7 @@ export const MypageEdit = () => {
               style={{ display: "none" }}
             />
             <img
-              src={user.profile}
+              src={image}
               alt="profile"
               className="h-[13vh] aspect-square rounded-full"
             />
@@ -158,6 +154,7 @@ export const MypageEdit = () => {
                 value={`${user.name} + "의 마켓입니다.`}
                 onChange={handleInput}
                 type="text"
+                disabled={true}
                 className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
               />
             </div>

@@ -23,6 +23,7 @@ export const userState = atom<UserDto>({
     address: "",
     detailAddress: "",
     phone: "",
+    certificate: "",
   },
 });
 
