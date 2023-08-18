@@ -35,7 +35,7 @@ export const MyPage = () => {
         <div className="flex justify-between flex-col w-[70vw] mt-2 p-10 bg-[#9EEBA5] rounded-3xl">
           <div className="flex w-full h-[15vh] justify-center items-center">
             <img
-              src={img}
+              src={SERVER.SERVER + img}
               alt="profile"
               className="h-[13vh] aspect-square rounded-full"
             />
