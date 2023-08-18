@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useRecoilState } from "recoil";
 import { userState } from "../../Atom/user";
@@ -9,6 +9,7 @@ import { SERVER } from "../../config";
 export const MyPage = () => {
   const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
+  const [img, setImg] = useState("");
 
   const handleonClickEditProfile = () => {
     navigate("/mypage-edit");
@@ -19,6 +20,8 @@ export const MyPage = () => {
       const res = await axiosInstance.get("/v1/user/me");
       setUser(res.data);
       console.log(res.data);
+      const encodedImageFileName = encodeURIComponent(res.data.profile);
+      setImg(`/images/${encodedImageFileName}`);
     };
     fetchUser();
   }, []);
@@ -32,7 +35,7 @@ export const MyPage = () => {
         <div className="flex justify-between flex-col w-[70vw] mt-2 p-10 bg-[#9EEBA5] rounded-3xl">
           <div className="flex w-full h-[15vh] justify-center items-center">
             <img
-              src={SERVER.SERVER + "images/" + user.profile}
+              src={img}
               alt="profile"
               className="h-[13vh] aspect-square rounded-full"
             />
