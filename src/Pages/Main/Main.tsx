@@ -6,10 +6,9 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import { useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 import { productDto } from "../../interface/product";
-import { buyItemState, buyState } from "../../Atom/buy";
+import { buyItemState } from "../../Atom/buy";
 import axiosInstance from "../../API/axios";
-import { BuyItem } from "../../interface/buy";
-import {buyItemState } from "../../Atom/buy";
+
 const dummydata: productDto[] = [
   {
     id: 1,
@@ -132,24 +131,27 @@ const WrapperStar = styled.div`
 
 
 export const Main = () => {
-  const [product, setProduct] = useRecoilState<BuyItem[]>(buyItemState);
+  const [product, setProduct] = useState<productDto[]>(dummydata);
+  
+  const fetchBuyInfo = async () => {
+    try {
+      const response = await axiosInstance.get(
+        "v1/sale_product/view_all"
+      );
+      console.log(response.data);
+      if (response.status === 200) {
+        setProduct(response.data);
+        console.log(response.data);
+      }
+    } catch (error: any) {
+      console.log(error);
+      
+    }
+  };
   
   useEffect(() => {
-    const fetchBuyInfo = async () => {
-      try {
-        const response = await axiosInstance.get(
-          "/v1/sale_product/view"
-        );
-        if (response.status === 200) {
-          setProduct(response.data);
-          console.log(response.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
     //fetchBuyInfo();
-    fetchBuyInfo();
+    setProduct(dummydata);
   }, []);
 
   return (
@@ -164,14 +166,14 @@ export const Main = () => {
             <Col>
             <span style={{fontSize:"1.3rem"}}>과일 대표 게시글</span>
               <Link to="/Category/과일">
-                <SmallComponent src={product[0].mainImage} alt="react" />
+                <SmallComponent src={product[0].main_image} alt="react" />
                 <WrapperText>
                 <span style={{fontSize:"1.5rem"}}>{product[0].name}</span>
                 <span style={{marginLeft:"0.5vw",fontSize:"1rem"}}>{product[0].price}원</span>
                 <Wrapper>
                 <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.2vw"}}/>
                 <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[0].averageReviewPoint}</span>
+                <span style={{marginRight:"0.5vw"}}>{product[0].rating}</span>
                 (<span>{product[0].viewCount}</span>)
                 </Col>         
                 </Wrapper>
@@ -188,7 +190,7 @@ export const Main = () => {
                 <Wrapper>
                 <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
                 <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[1].averageReviewPoint}</span>
+                <span style={{marginRight:"0.5vw"}}>{product[1].rating}</span>
                 (<span>{product[1].viewCount}</span>)
                 </Col>
                 </Wrapper>
@@ -205,7 +207,7 @@ export const Main = () => {
                 <Wrapper>
                 <img src={require("../../public/images/Star.png")} alt="" className="w-5 h-5" style={{marginLeft:"1.5vw"}}/>
                 <Col>
-                <span style={{marginRight:"0.5vw"}}>{product[2].averageReviewPoint}</span>
+                <span style={{marginRight:"0.5vw"}}>{product[2].rating}</span>
                 (<span>{product[2].viewCount}</span>)
                 </Col>
                 </Wrapper>
