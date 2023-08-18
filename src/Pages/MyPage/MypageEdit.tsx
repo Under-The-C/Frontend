@@ -12,6 +12,7 @@ export const MypageEdit = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [image, setImage] = useState("");
   const formData = new FormData();
+  const [file, setFile] = useState<File | null>(null);
 
   const handleonClickEditProfile = async () => {
     if (user.address === "") {
@@ -28,6 +29,7 @@ export const MypageEdit = () => {
     formData.append("address", user.address);
     formData.append("detailAddress", user.detailAddress);
     if (user.certificate) formData.append("certificate", user.certificate);
+    if (file) formData.append("profile", file);
 
     const response = await axiosInstance.patch("/v1/user/update", formData);
 
@@ -37,6 +39,10 @@ export const MypageEdit = () => {
   const handelClickSecession = () => {
     window.location.href =
       "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=be84e5c954c05f4d77886292167f2621&redirect_uri=https://115.85.181.92/login/oauth2/kakao-unlink";
+  };
+
+  const handleChangeImageClick = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,14 +59,11 @@ export const MypageEdit = () => {
       if (file) {
         reader.readAsDataURL(file);
         formData.append("profile", file);
+        setFile(file);
       }
     } catch (error) {
       console.error("Error image load:", error);
     }
-  };
-
-  const handleChangeImageClick = () => {
-    if (fileInputRef.current) fileInputRef.current.click();
   };
 
   const handleSearchAddr = {
@@ -130,16 +133,6 @@ export const MypageEdit = () => {
               value={user.phone}
               className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
               disabled={true}
-            />
-          </div>
-          <div className="flex flex-row w-full h-[15%] justify-center items-center my-10 ">
-            <label className="flex text-xl font-semibold w-32">닉네임</label>
-            <input
-              name="nickname"
-              value={user.email}
-              onChange={handleInput}
-              type="text"
-              className=" ml-10 flex w-[80%] h-10 rounded-md outline-none border-none px-3"
             />
           </div>
           {user.role === "seller" && (

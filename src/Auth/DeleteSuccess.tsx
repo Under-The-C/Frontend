@@ -10,9 +10,9 @@ export const DeleteSuccess = () => {
 
   const logout = async () => {
     setLoggedIn(false);
+    navigate("/");
     await axiosInstance.get("/v1/logout");
     window.location.reload();
-    navigate("/");
   };
 
   useEffect(() => {
