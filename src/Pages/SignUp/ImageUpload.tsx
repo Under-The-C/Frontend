@@ -1,28 +1,32 @@
-import React, { useRef } from "react";
-import { useRecoilState } from "recoil";
-import { signupState } from "../../Atom/signup";
+import React, { useRef, useState } from "react";
+import { atom, useRecoilState, useSetRecoilState } from "recoil";
+import { imageFileState, signupState } from "../../Atom/signup";
 
 export const ImageUpload = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [signup, setSignup] = useRecoilState(signupState);
+  const setImageFile = useSetRecoilState(imageFileState);
+  const [image, setImage] = useState("");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    const reader: FileReader | null = new FileReader();
-    if (!file) return;
+    const reader = new FileReader();
 
+    console.log(file);
     try {
       // 이미지 미리보기
       reader.onload = () => {
         if (reader.result) {
-          setSignup((prevSales) => ({
-            ...prevSales,
-            image: reader.result as string,
-          }));
+          setImage(reader.result as string);
         }
       };
-
-      reader.readAsDataURL(file);
+      if (file) {
+        console.log(file);
+        reader.readAsDataURL(file);
+        setImageFile(file);
+        //reader.onload = () => {
+        //};
+      }
     } catch (error) {
       console.error("Error image load:", error);
     }
@@ -34,7 +38,7 @@ export const ImageUpload = () => {
 
   return (
     <>
-      <span className="font-bold text-xl">대표 이미지</span>
+      {/*<span className="font-bold text-xl">대표 이미지</span>*/}
       <div className="flex h-[20vh] aspect-square bg-gray-200 justify-center items-center">
         <input
           type="file"
@@ -43,9 +47,9 @@ export const ImageUpload = () => {
           onChange={handleImageChange}
           style={{ display: "none" }}
         />
-        {signup.certificate ? (
+        {image ? (
           <img
-            src={signup.certificate}
+            src={image}
             className="w-full h-full image-contain"
             alt="cre_image"
             onClick={handleChangeImageClick}

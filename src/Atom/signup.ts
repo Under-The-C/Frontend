@@ -12,3 +12,8 @@ export const signupState = atom<SignupStateDto>({
     certificate: ""
   },
 });
+
+export const imageFileState = atom<File | null>({
+  key: "imageFileState",
+  default: null,
+});
