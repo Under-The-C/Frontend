@@ -9,10 +9,10 @@ interface ProductKeyword {
   keyword: string;
 }
 
-interface DetailImage {
-  id: number;
-  imageUrl: string;
-}
+//interface DetailImage {
+//  id: number;
+//  imageUrl: string;
+//}
 
 export interface BuyItem {
   id: number;
@@ -24,7 +24,7 @@ export interface BuyItem {
   description: string;
   subDescription: string;
   mainImage: string;
-  detailImage: DetailImage[];
+  detailImage: string[];
   keywords: ProductKeyword[];
   saleStartDate: string;
   saleEndDate: string;
