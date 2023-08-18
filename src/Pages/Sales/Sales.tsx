@@ -15,7 +15,8 @@ import axiosInstance from "../../API/axios";
 
 export const Sales = () => {
   const [sales, setSales] = useRecoilState(salesState);
-  const imageFile = useRecoilValue(imageFileState);
+  const detailimageFile = useRecoilValue(imageFileState);
+  const mainimageFile = useRecoilValue(imageFileState);
   const user = useRecoilValue(userState);
   const formData = new FormData();
 
@@ -78,10 +79,11 @@ export const Sales = () => {
     formData.append("subTitle", sales.subTitle);
     formData.append("saleStartDate", sales.saleStartDate);
     formData.append("saleEndDate",sales.saleEndDate);
-    if (imageFile) {
-      formData.append("detailImages", imageFile);
-      formData.append("mainImage", imageFile);
-
+    if (detailimageFile) {
+      formData.append("detailImages", detailimageFile);
+    }
+    if (mainimageFile) {
+      formData.append("mainImage", mainimageFile);
     }
 
     console.log(sales);
