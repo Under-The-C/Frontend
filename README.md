@@ -1,4 +1,4 @@
-# 프로젝트 이름
+# B_Get_Table
 
 <p align="center">
   <br>
