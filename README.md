@@ -44,20 +44,34 @@ GIF Images
 - 상품 구매 페이지
 
 ### 기능 5
-- 장바구니/결재 페이지
+- 장바구니/결제 페이지
 
 ### 기능 6
 - 구매자 마이페이지
-### 기능 4
 
 <br>
 
 ## 배운 점 & 아쉬운 점
 
+### 배운 점
 <p align="justify">
-- Typescrip를 처음 사용해 본 프로젝트로 Typescript의 기초적인 사용법을 습득
-- Recoil을 활용한 상태관리
+Typescript를 처음 사용해 본 프로젝트로 Typescript의 기초적인 사용법을 습득
 </p>
+<p align="justify">
+Recoil을 활용한 상태관리
+</p>
+<p align="justify">
+백엔드 개발자와의 첫 협업
+</p>
+
+### 아쉬운 점
+<p align="justify">
+만들고자 했던 기능들을 완벽히 구현하지 못하고 마무리(ex.결제)
+</p>
+<p align="justify">
+처음 접하는 기술의 이해보다는 사용에 초점을 맞춰서 진행하였기에 기술들의 이해가 부족
+</p>
+
 
 <br>
 
