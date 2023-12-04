@@ -33,7 +33,8 @@ GIF Images
 
 ### 기능 1
 - 로그인
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6050fe56-a254-4b6d-b7e1-eb05dd2941a7/34ce5a43-6c8c-4a4c-8e92-801872db42ee/Untitled.png)
+- ![image](https://github.com/OhHyukJun/Frontend/assets/90260242/0d1f17f7-3680-469c-b08d-cb50f3b7e60c)
+
 ### 기능 2
 - 메인 페이지
 
