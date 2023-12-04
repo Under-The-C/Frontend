@@ -33,7 +33,7 @@ GIF Images
 
 ### 기능 1
 - 로그인
-- ![image](https://github.com/OhHyukJun/Frontend/assets/90260242/0d1f17f7-3680-469c-b08d-cb50f3b7e60c)
+  - OAuth를 사용하여 카카로 로그인 구현 
 
 ### 기능 2
 - 메인 페이지
